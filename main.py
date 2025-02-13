@@ -6,6 +6,8 @@ import os
 from collections import defaultdict
 import logging
 
+from sympy.physics.units import current
+
 # Set up logging
 logging.basicConfig(
     level=logging.INFO,
@@ -20,14 +22,17 @@ logging.basicConfig(
 class RacingAI:
     def __init__(self):
         self.q_table = defaultdict(lambda: defaultdict(float))
-        self.learning_rate = 0.1
-        self.discount_factor = 0.95
-        self.initial_epsilon = 0.1
-        self.min_epsilon = 0.01
-        self.epsilon_decay = 0.9975  # Adjust this value to control decay speed
+        self.learning_rate = 0.05
+        self.discount_factor = 0.98
+        self.initial_epsilon = 0.2
+        self.min_epsilon = 0.02
+        self.epsilon_decay = 0.9985  # Adjust this value to control decay speed
         self.epsilon = self.initial_epsilon
         self.actions = ['w', 'a', 'd', 's', 'wa', 'wd', 'sa', 'sd', '']
         self.load_q_table()
+        self.current_q=self.q_table[(0.0,0.0,False,False)]['w']
+        self.last_successful_action = None
+        self.action_momentum = 0.2
         logging.info("RacingAI initialized")
 
     def decay_epsilon(self):
@@ -74,36 +79,40 @@ class RacingAI:
 
     def choose_action(self, state):
         try:
+            # Apply momentum - chance to repeat last successful action
+            if self.last_successful_action and np.random.random() < self.action_momentum:
+                return self.last_successful_action
+
             if np.random.random() < self.epsilon:
-                # Just convert to string directly
                 return str(np.random.choice(self.actions))
 
-            # Get action with highest Q-value
             q_values = self.q_table[state]
-            if not q_values:  # If no Q-values exist for this state
+            if not q_values:
                 return str(np.random.choice(self.actions))
 
-            return str(max(q_values.items(), key=lambda x: x[1])[0])
+            best_action = str(max(q_values.items(), key=lambda x: x[1])[0])
+            self.last_successful_action = best_action
+            return best_action
         except Exception as e:
             logging.error(f"Error choosing action: {e}")
-            return ''  # Return empty action as fallback
+            return ''
 
     def update_q_value(self, state, action, reward, next_state):
         try:
-            # Convert action to regular string if it's a numpy string type
-            action = str(action) if isinstance(action, np.str_) else action
+            # Ensure action is a string
+            action = str(action)
 
-            # Get current Q-value, defaulting to 0 if not found
-            current_q = self.q_table[state][
-                action]  # This is safe because we use defaultdict(lambda: defaultdict(float))
+            # Safe dictionary access with explicit type conversion
+            self.current_q = float(self.q_table[state][action])
 
-            # Get maximum Q-value for next state actions
-            next_state_values = self.q_table[next_state]
-            next_max_q = max(next_state_values.values()) if next_state_values else 0
+            # Get next state values, converting to float
+            next_state_values = {k: float(v) for k, v in self.q_table[next_state].items()}
+            next_max_q = max(next_state_values.values()) if next_state_values else 0.0
 
-            # Q-learning update formula
-            new_q = current_q + self.learning_rate * (reward + self.discount_factor * next_max_q - current_q)
+            # Q-learning update formula with explicit float conversion
+            new_q = float(self.current_q + self.learning_rate * (reward + self.discount_factor * next_max_q - self.current_q))
             self.q_table[state][action] = new_q
+
         except Exception as e:
             logging.error(f"Error updating Q-value: {str(e)}")
 
@@ -211,10 +220,11 @@ def run_ai():
                             reward = float(current_state[0])*3
                         else:
                             reward = 100
-                        reward += (time.time() - start_time) * 10
+                        if(current_state[0]>5):
+                            reward += (time.time() - start_time) * 10
                         if current_state[1] > 0:  # Checkpoint reward
+                            reward += (100000 * current_state[1])**(3/2)
 
-                            reward += 100000 * current_state[1]
                         if current_state[3]:  # Time announcer reward
                             reward += 100000000000
                         if time.time()>start_time+180:
