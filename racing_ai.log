@@ -1,0 +1,862 @@
+2025-02-13 07:20:22,569 - INFO - RacingAI initialized
+2025-02-13 07:20:27,255 - INFO - Game loaded successfully
+2025-02-13 07:20:43,929 - INFO - Episode complete! Total reward: 156.57859086990356
+2025-02-13 07:20:43,932 - INFO - Episode data saved successfully
+2025-02-13 07:20:43,935 - INFO - Q-table saved successfully
+2025-02-13 07:20:49,167 - INFO - Episode complete! Total reward: 49.25589084625244
+2025-02-13 07:20:49,170 - INFO - Episode data saved successfully
+2025-02-13 07:20:49,171 - INFO - Q-table saved successfully
+2025-02-13 07:20:58,654 - INFO - Episode complete! Total reward: 92.47824907302856
+2025-02-13 07:20:58,657 - INFO - Episode data saved successfully
+2025-02-13 07:20:58,658 - INFO - Q-table saved successfully
+2025-02-13 07:21:06,475 - INFO - Episode complete! Total reward: 75.89670896530151
+2025-02-13 07:21:06,478 - INFO - Episode data saved successfully
+2025-02-13 07:21:06,480 - INFO - Q-table saved successfully
+2025-02-13 07:21:13,942 - INFO - Episode complete! Total reward: 72.3751711845398
+2025-02-13 07:21:13,945 - INFO - Episode data saved successfully
+2025-02-13 07:21:13,947 - INFO - Q-table saved successfully
+2025-02-13 07:21:25,285 - INFO - Episode complete! Total reward: 150.60823917388916
+2025-02-13 07:21:25,287 - INFO - Episode data saved successfully
+2025-02-13 07:21:25,288 - INFO - Q-table saved successfully
+2025-02-13 07:21:32,790 - INFO - Episode complete! Total reward: 72.75590896606445
+2025-02-13 07:21:32,794 - INFO - Episode data saved successfully
+2025-02-13 07:21:32,796 - INFO - Q-table saved successfully
+2025-02-13 07:21:47,854 - INFO - Episode complete! Total reward: 147.79919147491455
+2025-02-13 07:21:47,859 - INFO - Episode data saved successfully
+2025-02-13 07:21:47,861 - INFO - Q-table saved successfully
+2025-02-13 07:21:55,489 - INFO - Episode complete! Total reward: 72.88660049438477
+2025-02-13 07:21:55,492 - INFO - Episode data saved successfully
+2025-02-13 07:21:55,495 - INFO - Q-table saved successfully
+2025-02-13 07:22:03,153 - INFO - Episode complete! Total reward: 73.73419046401978
+2025-02-13 07:22:03,155 - INFO - Episode data saved successfully
+2025-02-13 07:22:03,156 - INFO - Q-table saved successfully
+2025-02-13 07:22:15,366 - INFO - Episode complete! Total reward: 139.85195875167847
+2025-02-13 07:22:15,369 - INFO - Episode data saved successfully
+2025-02-13 07:22:15,371 - INFO - Q-table saved successfully
+2025-02-13 07:22:27,571 - INFO - Episode complete! Total reward: 159.73891019821167
+2025-02-13 07:22:27,572 - INFO - Episode data saved successfully
+2025-02-13 07:22:27,576 - INFO - Q-table saved successfully
+2025-02-13 07:22:41,144 - INFO - Episode complete! Total reward: 132.6587200164795
+2025-02-13 07:22:41,149 - INFO - Episode data saved successfully
+2025-02-13 07:22:41,158 - INFO - Q-table saved successfully
+2025-02-13 07:22:49,453 - INFO - Episode complete! Total reward: 80.11664867401123
+2025-02-13 07:22:49,454 - INFO - Episode data saved successfully
+2025-02-13 07:22:49,456 - INFO - Q-table saved successfully
+2025-02-13 07:22:57,152 - INFO - Episode complete! Total reward: 74.70769882202148
+2025-02-13 07:22:57,155 - INFO - Episode data saved successfully
+2025-02-13 07:22:57,158 - INFO - Q-table saved successfully
+2025-02-13 07:23:04,772 - INFO - Episode complete! Total reward: 73.87310266494751
+2025-02-13 07:23:04,776 - INFO - Episode data saved successfully
+2025-02-13 07:23:04,778 - INFO - Q-table saved successfully
+2025-02-13 07:23:16,469 - INFO - Episode complete! Total reward: 114.10552024841309
+2025-02-13 07:23:16,471 - INFO - Episode data saved successfully
+2025-02-13 07:23:16,473 - INFO - Q-table saved successfully
+2025-02-13 07:23:23,422 - INFO - Episode complete! Total reward: 67.31096982955933
+2025-02-13 07:23:23,424 - INFO - Episode data saved successfully
+2025-02-13 07:23:23,427 - INFO - Q-table saved successfully
+2025-02-13 07:23:34,480 - INFO - Episode complete! Total reward: 128.3144497871399
+2025-02-13 07:23:34,483 - INFO - Episode data saved successfully
+2025-02-13 07:23:34,485 - INFO - Q-table saved successfully
+2025-02-13 07:23:49,983 - INFO - Episode complete! Total reward: 171.87253952026367
+2025-02-13 07:23:50,009 - INFO - Episode data saved successfully
+2025-02-13 07:23:50,044 - INFO - Q-table saved successfully
+2025-02-13 07:23:57,567 - INFO - Episode complete! Total reward: 72.0725679397583
+2025-02-13 07:23:57,573 - INFO - Episode data saved successfully
+2025-02-13 07:23:57,580 - INFO - Q-table saved successfully
+2025-02-13 07:24:06,617 - INFO - Episode complete! Total reward: 127.59284973144531
+2025-02-13 07:24:06,620 - INFO - Episode data saved successfully
+2025-02-13 07:24:06,622 - INFO - Q-table saved successfully
+2025-02-13 07:24:14,296 - INFO - Episode complete! Total reward: 74.51433897018433
+2025-02-13 07:24:14,299 - INFO - Episode data saved successfully
+2025-02-13 07:24:14,300 - INFO - Q-table saved successfully
+2025-02-13 07:24:23,938 - INFO - Episode complete! Total reward: 173.6548614501953
+2025-02-13 07:24:23,942 - INFO - Episode data saved successfully
+2025-02-13 07:24:23,945 - INFO - Q-table saved successfully
+2025-02-13 07:24:36,472 - INFO - Episode complete! Total reward: 163.01650762557983
+2025-02-13 07:24:36,486 - INFO - Episode data saved successfully
+2025-02-13 07:24:36,488 - INFO - Q-table saved successfully
+2025-02-13 07:24:46,966 - INFO - Episode complete! Total reward: 122.00253963470459
+2025-02-13 07:24:46,967 - INFO - Episode data saved successfully
+2025-02-13 07:24:46,969 - INFO - Q-table saved successfully
+2025-02-13 07:24:54,454 - INFO - Episode complete! Total reward: 72.1458101272583
+2025-02-13 07:24:54,456 - INFO - Episode data saved successfully
+2025-02-13 07:24:54,462 - INFO - Q-table saved successfully
+2025-02-13 07:25:01,894 - INFO - Episode complete! Total reward: 211.59027099609375
+2025-02-13 07:25:01,897 - INFO - Episode data saved successfully
+2025-02-13 07:25:01,898 - INFO - Q-table saved successfully
+2025-02-13 07:25:17,039 - INFO - Episode complete! Total reward: 148.5874605178833
+2025-02-13 07:25:17,046 - INFO - Episode data saved successfully
+2025-02-13 07:25:17,049 - INFO - Q-table saved successfully
+2025-02-13 07:25:49,757 - INFO - Episode complete! Total reward: 324.28261041641235
+2025-02-13 07:25:49,763 - INFO - Episode data saved successfully
+2025-02-13 07:25:49,764 - INFO - Q-table saved successfully
+2025-02-13 07:25:56,751 - INFO - Episode complete! Total reward: 67.01442956924438
+2025-02-13 07:25:56,764 - INFO - Episode data saved successfully
+2025-02-13 07:25:56,767 - INFO - Q-table saved successfully
+2025-02-13 07:26:04,020 - INFO - Episode complete! Total reward: 70.28523921966553
+2025-02-13 07:26:04,022 - INFO - Episode data saved successfully
+2025-02-13 07:26:04,025 - INFO - Q-table saved successfully
+2025-02-13 07:26:11,488 - INFO - Episode complete! Total reward: 72.39871025085449
+2025-02-13 07:26:11,492 - INFO - Episode data saved successfully
+2025-02-13 07:26:11,494 - INFO - Q-table saved successfully
+2025-02-13 07:26:24,912 - INFO - Episode complete! Total reward: 151.39743089675903
+2025-02-13 07:26:24,916 - INFO - Episode data saved successfully
+2025-02-13 07:26:24,918 - INFO - Q-table saved successfully
+2025-02-13 07:26:34,991 - INFO - Episode complete! Total reward: 97.81992197036743
+2025-02-13 07:26:34,993 - INFO - Episode data saved successfully
+2025-02-13 07:26:34,995 - INFO - Q-table saved successfully
+2025-02-13 07:26:43,703 - INFO - Episode complete! Total reward: 84.26138877868652
+2025-02-13 07:26:43,706 - INFO - Episode data saved successfully
+2025-02-13 07:26:43,710 - INFO - Q-table saved successfully
+2025-02-13 07:26:52,431 - INFO - Episode complete! Total reward: 84.4070291519165
+2025-02-13 07:26:52,433 - INFO - Episode data saved successfully
+2025-02-13 07:26:52,435 - INFO - Q-table saved successfully
+2025-02-13 07:27:01,693 - INFO - Episode complete! Total reward: 90.29428958892822
+2025-02-13 07:27:01,709 - INFO - Episode data saved successfully
+2025-02-13 07:27:01,712 - INFO - Q-table saved successfully
+2025-02-13 07:27:12,433 - INFO - Episode complete! Total reward: 124.57129955291748
+2025-02-13 07:27:12,435 - INFO - Episode data saved successfully
+2025-02-13 07:27:12,437 - INFO - Q-table saved successfully
+2025-02-13 07:27:19,585 - INFO - Episode complete! Total reward: 89.254891872406
+2025-02-13 07:27:19,586 - INFO - Episode data saved successfully
+2025-02-13 07:27:19,590 - INFO - Q-table saved successfully
+2025-02-13 07:27:34,449 - INFO - Episode complete! Total reward: 146.40878915786743
+2025-02-13 07:27:34,452 - INFO - Episode data saved successfully
+2025-02-13 07:27:34,457 - INFO - Q-table saved successfully
+2025-02-13 07:27:51,034 - INFO - Episode complete! Total reward: 182.9823112487793
+2025-02-13 07:27:51,038 - INFO - Episode data saved successfully
+2025-02-13 07:27:51,041 - INFO - Q-table saved successfully
+2025-02-13 07:28:03,467 - INFO - Episode complete! Total reward: 161.4785671234131
+2025-02-13 07:28:03,474 - INFO - Episode data saved successfully
+2025-02-13 07:28:03,476 - INFO - Q-table saved successfully
+2025-02-13 07:28:12,725 - INFO - Episode complete! Total reward: 189.57605123519897
+2025-02-13 07:28:12,727 - INFO - Episode data saved successfully
+2025-02-13 07:28:12,729 - INFO - Q-table saved successfully
+2025-02-13 07:28:27,970 - INFO - Episode complete! Total reward: 169.6472191810608
+2025-02-13 07:28:27,972 - INFO - Episode data saved successfully
+2025-02-13 07:28:27,974 - INFO - Q-table saved successfully
+2025-02-13 07:28:43,151 - INFO - Episode complete! Total reward: 148.10459852218628
+2025-02-13 07:28:43,157 - INFO - Episode data saved successfully
+2025-02-13 07:28:43,159 - INFO - Q-table saved successfully
+2025-02-13 07:28:43,658 - INFO - Q-table saved successfully
+2025-02-13 07:28:48,423 - INFO - Q-table loaded successfully
+2025-02-13 07:28:48,424 - INFO - RacingAI initialized
+2025-02-13 07:28:54,149 - INFO - Game loaded successfully
+2025-02-13 07:29:03,964 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:29:05,154 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:29:08,867 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:29:14,825 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:29:15,543 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:29:16,907 - INFO - Episode complete! Total reward: 427.44982957839966
+2025-02-13 07:29:16,932 - INFO - Episode data saved successfully
+2025-02-13 07:29:16,934 - INFO - Q-table saved successfully
+2025-02-13 07:29:17,626 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:29:17,975 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:29:18,563 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:29:19,158 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:29:20,093 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:29:21,193 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:29:21,894 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:29:23,736 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:29:25,548 - INFO - Episode complete! Total reward: 283.8720202445984
+2025-02-13 07:29:25,549 - INFO - Episode data saved successfully
+2025-02-13 07:29:25,551 - INFO - Q-table saved successfully
+2025-02-13 07:29:28,155 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:29:32,223 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:29:35,908 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:29:36,389 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:29:36,863 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:29:45,378 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:29:49,700 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:29:51,376 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:29:52,437 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:29:59,672 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:30:03,851 - INFO - Episode complete! Total reward: 580.7473516464233
+2025-02-13 07:30:03,856 - INFO - Episode data saved successfully
+2025-02-13 07:30:03,858 - INFO - Q-table saved successfully
+2025-02-13 07:30:04,675 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:30:10,308 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:30:10,424 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:30:10,659 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:30:12,274 - INFO - Episode complete! Total reward: 281.2460684776306
+2025-02-13 07:30:12,275 - INFO - Episode data saved successfully
+2025-02-13 07:30:12,277 - INFO - Q-table saved successfully
+2025-02-13 07:30:15,226 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:30:19,226 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:30:20,301 - INFO - Episode complete! Total reward: 477.44827032089233
+2025-02-13 07:30:20,304 - INFO - Episode data saved successfully
+2025-02-13 07:30:20,306 - INFO - Q-table saved successfully
+2025-02-13 07:30:22,708 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:30:22,946 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:30:24,141 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:30:28,291 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:30:29,227 - INFO - Episode complete! Total reward: 185.5082869529724
+2025-02-13 07:30:29,262 - INFO - Episode data saved successfully
+2025-02-13 07:30:29,279 - INFO - Q-table saved successfully
+2025-02-13 07:30:29,849 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:30:31,996 - ERROR - Error updating Q-value: ''
+2025-02-13 07:30:38,398 - INFO - Episode complete! Total reward: 88.8507080078125
+2025-02-13 07:30:38,401 - INFO - Episode data saved successfully
+2025-02-13 07:30:38,404 - INFO - Q-table saved successfully
+2025-02-13 07:30:44,280 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:30:45,308 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:30:45,664 - INFO - Episode complete! Total reward: 320.38651943206787
+2025-02-13 07:30:45,668 - INFO - Episode data saved successfully
+2025-02-13 07:30:45,671 - INFO - Q-table saved successfully
+2025-02-13 07:30:47,255 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:30:49,401 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:30:50,826 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:30:51,179 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:30:51,300 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:30:52,358 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:30:53,309 - INFO - Episode complete! Total reward: 173.41676950454712
+2025-02-13 07:30:53,311 - INFO - Episode data saved successfully
+2025-02-13 07:30:53,312 - INFO - Q-table saved successfully
+2025-02-13 07:30:54,914 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:30:55,155 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:31:00,608 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:31:00,959 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:31:02,910 - INFO - Episode complete! Total reward: 193.67767095565796
+2025-02-13 07:31:02,913 - INFO - Episode data saved successfully
+2025-02-13 07:31:02,914 - INFO - Q-table saved successfully
+2025-02-13 07:31:03,825 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:05,845 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:31:06,698 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:31:06,823 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:06,939 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:09,195 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:31:10,757 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:31:11,339 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:31:14,202 - INFO - Episode complete! Total reward: 210.59094190597534
+2025-02-13 07:31:14,205 - INFO - Episode data saved successfully
+2025-02-13 07:31:14,206 - INFO - Q-table saved successfully
+2025-02-13 07:31:16,708 - ERROR - Error updating Q-value: ''
+2025-02-13 07:31:16,825 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:18,724 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:20,613 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:31:21,691 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:31:21,710 - INFO - Episode complete! Total reward: 72.16219186782837
+2025-02-13 07:31:21,712 - INFO - Episode data saved successfully
+2025-02-13 07:31:21,715 - INFO - Q-table saved successfully
+2025-02-13 07:31:27,790 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:31:28,373 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:31:33,503 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:31:34,807 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:31:36,142 - INFO - Episode complete! Total reward: 141.41473054885864
+2025-02-13 07:31:36,147 - INFO - Episode data saved successfully
+2025-02-13 07:31:36,151 - INFO - Q-table saved successfully
+2025-02-13 07:31:36,656 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:31:39,859 - ERROR - Error updating Q-value: ''
+2025-02-13 07:31:39,973 - ERROR - Error updating Q-value: ''
+2025-02-13 07:31:42,713 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:45,312 - INFO - Episode complete! Total reward: 88.8402795791626
+2025-02-13 07:31:45,323 - INFO - Episode data saved successfully
+2025-02-13 07:31:45,325 - INFO - Q-table saved successfully
+2025-02-13 07:31:48,804 - ERROR - Error updating Q-value: ''
+2025-02-13 07:31:54,724 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:55,939 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:31:58,310 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:31:59,391 - INFO - Episode complete! Total reward: 137.90338039398193
+2025-02-13 07:31:59,393 - INFO - Episode data saved successfully
+2025-02-13 07:31:59,395 - INFO - Q-table saved successfully
+2025-02-13 07:32:02,886 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:32:06,021 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:07,205 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:32:11,488 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:32:12,419 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:32:13,006 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:13,361 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:15,880 - INFO - Episode complete! Total reward: 162.5835084915161
+2025-02-13 07:32:15,885 - INFO - Episode data saved successfully
+2025-02-13 07:32:15,887 - INFO - Q-table saved successfully
+2025-02-13 07:32:16,638 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:21,506 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:32:22,368 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:32:26,614 - INFO - Episode complete! Total reward: 204.44043159484863
+2025-02-13 07:32:26,620 - INFO - Episode data saved successfully
+2025-02-13 07:32:26,622 - INFO - Q-table saved successfully
+2025-02-13 07:32:29,239 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:29,937 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:30,758 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:32:35,127 - INFO - Episode complete! Total reward: 82.20956087112427
+2025-02-13 07:32:35,141 - INFO - Episode data saved successfully
+2025-02-13 07:32:35,144 - INFO - Q-table saved successfully
+2025-02-13 07:32:36,733 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:39,140 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:32:40,340 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:43,276 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:32:43,648 - INFO - Episode complete! Total reward: 82.26022005081177
+2025-02-13 07:32:43,651 - INFO - Episode data saved successfully
+2025-02-13 07:32:43,652 - INFO - Q-table saved successfully
+2025-02-13 07:32:46,273 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:32:51,807 - INFO - Episode complete! Total reward: 78.71558904647827
+2025-02-13 07:32:51,811 - INFO - Episode data saved successfully
+2025-02-13 07:32:51,813 - INFO - Q-table saved successfully
+2025-02-13 07:32:52,382 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:32:52,503 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:32:54,405 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:32:56,874 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:32:58,283 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:32:59,345 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:33:00,422 - INFO - Episode complete! Total reward: 83.85001182556152
+2025-02-13 07:33:00,424 - INFO - Episode data saved successfully
+2025-02-13 07:33:00,426 - INFO - Q-table saved successfully
+2025-02-13 07:33:02,074 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:33:04,439 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:33:06,955 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:33:07,294 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:33:07,772 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:33:08,472 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:33:09,069 - INFO - Episode complete! Total reward: 184.07814979553223
+2025-02-13 07:33:09,071 - INFO - Episode data saved successfully
+2025-02-13 07:33:09,072 - INFO - Q-table saved successfully
+2025-02-13 07:33:13,089 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:33:14,518 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:33:18,061 - INFO - Episode complete! Total reward: 287.24274158477783
+2025-02-13 07:33:18,065 - INFO - Episode data saved successfully
+2025-02-13 07:33:18,068 - INFO - Q-table saved successfully
+2025-02-13 07:33:21,653 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:33:27,343 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:33:31,358 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:33:31,836 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:33:32,777 - INFO - Episode complete! Total reward: 144.31173086166382
+2025-02-13 07:33:32,784 - INFO - Episode data saved successfully
+2025-02-13 07:33:32,787 - INFO - Q-table saved successfully
+2025-02-13 07:33:37,369 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:33:37,955 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:33:39,502 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:33:42,206 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:33:49,101 - INFO - Episode complete! Total reward: 210.24197816848755
+2025-02-13 07:33:49,105 - INFO - Episode data saved successfully
+2025-02-13 07:33:49,106 - INFO - Q-table saved successfully
+2025-02-13 07:33:51,441 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:33:54,770 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:33:59,225 - INFO - Episode complete! Total reward: 198.8705015182495
+2025-02-13 07:33:59,227 - INFO - Episode data saved successfully
+2025-02-13 07:33:59,228 - INFO - Q-table saved successfully
+2025-02-13 07:33:59,684 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:34:00,274 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:34:02,173 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:34:03,315 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:34:07,193 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:34:08,004 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:34:08,237 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:34:08,950 - ERROR - Error updating Q-value: ''
+2025-02-13 07:34:10,712 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:34:12,387 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:34:12,505 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:34:12,764 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:34:15,168 - INFO - Episode complete! Total reward: 357.0306181907654
+2025-02-13 07:34:15,170 - INFO - Episode data saved successfully
+2025-02-13 07:34:15,172 - INFO - Q-table saved successfully
+2025-02-13 07:34:20,374 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:34:20,960 - ERROR - Error updating Q-value: ''
+2025-02-13 07:34:21,437 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:34:23,320 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:34:23,557 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:34:26,638 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:34:27,591 - INFO - Episode complete! Total reward: 221.90041065216064
+2025-02-13 07:34:27,592 - INFO - Episode data saved successfully
+2025-02-13 07:34:27,594 - INFO - Q-table saved successfully
+2025-02-13 07:34:30,302 - ERROR - Error updating Q-value: ''
+2025-02-13 07:34:30,435 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:34:32,535 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:34:33,813 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:34:34,521 - ERROR - Error updating Q-value: ''
+2025-02-13 07:34:38,294 - INFO - Episode complete! Total reward: 204.73764896392822
+2025-02-13 07:34:38,298 - INFO - Episode data saved successfully
+2025-02-13 07:34:38,300 - INFO - Q-table saved successfully
+2025-02-13 07:34:40,786 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:34:41,569 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:34:44,988 - INFO - Episode complete! Total reward: 414.07037258148193
+2025-02-13 07:34:44,992 - INFO - Episode data saved successfully
+2025-02-13 07:34:44,993 - INFO - Q-table saved successfully
+2025-02-13 07:34:49,474 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:34:56,453 - ERROR - Error updating Q-value: ''
+2025-02-13 07:35:00,207 - INFO - Episode complete! Total reward: 149.4861602783203
+2025-02-13 07:35:00,231 - INFO - Episode data saved successfully
+2025-02-13 07:35:00,241 - INFO - Q-table saved successfully
+2025-02-13 07:35:08,176 - INFO - Episode complete! Total reward: 174.99481916427612
+2025-02-13 07:35:08,192 - INFO - Episode data saved successfully
+2025-02-13 07:35:08,196 - INFO - Q-table saved successfully
+2025-02-13 07:35:11,454 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:35:13,369 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:35:14,673 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:35:16,352 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:35:16,591 - INFO - Episode complete! Total reward: 131.2034296989441
+2025-02-13 07:35:16,592 - INFO - Episode data saved successfully
+2025-02-13 07:35:16,596 - INFO - Q-table saved successfully
+2025-02-13 07:35:18,193 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:35:19,695 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:35:20,532 - ERROR - Error updating Q-value: ''
+2025-02-13 07:35:23,869 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:35:26,155 - INFO - Episode complete! Total reward: 93.32084894180298
+2025-02-13 07:35:26,157 - INFO - Episode data saved successfully
+2025-02-13 07:35:26,158 - INFO - Q-table saved successfully
+2025-02-13 07:35:33,018 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:35:35,782 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:35:41,985 - INFO - Episode complete! Total reward: 156.02981805801392
+2025-02-13 07:35:41,987 - INFO - Episode data saved successfully
+2025-02-13 07:35:41,989 - INFO - Q-table saved successfully
+2025-02-13 07:35:44,620 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:35:45,202 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:35:55,025 - INFO - Episode complete! Total reward: 127.44924783706665
+2025-02-13 07:35:55,030 - INFO - Episode data saved successfully
+2025-02-13 07:35:55,032 - INFO - Q-table saved successfully
+2025-02-13 07:35:56,051 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:35:56,986 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:35:59,020 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:35:59,254 - ERROR - Error updating Q-value: ''
+2025-02-13 07:35:59,376 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:36:02,091 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:36:02,922 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:36:03,752 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:36:04,456 - INFO - Episode complete! Total reward: 241.4037823677063
+2025-02-13 07:36:04,458 - INFO - Episode data saved successfully
+2025-02-13 07:36:04,459 - INFO - Q-table saved successfully
+2025-02-13 07:36:05,859 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:36:07,949 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:36:08,184 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:36:09,242 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:36:10,184 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:36:13,151 - INFO - Episode complete! Total reward: 134.64484691619873
+2025-02-13 07:36:13,152 - INFO - Episode data saved successfully
+2025-02-13 07:36:13,155 - INFO - Q-table saved successfully
+2025-02-13 07:36:14,317 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:36:15,506 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:36:16,219 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:36:20,635 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:36:20,752 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:36:21,340 - INFO - Episode complete! Total reward: 79.60938930511475
+2025-02-13 07:36:21,343 - INFO - Episode data saved successfully
+2025-02-13 07:36:21,346 - INFO - Q-table saved successfully
+2025-02-13 07:36:23,158 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:36:29,582 - INFO - Episode complete! Total reward: 79.50969934463501
+2025-02-13 07:36:29,584 - INFO - Episode data saved successfully
+2025-02-13 07:36:29,586 - INFO - Q-table saved successfully
+2025-02-13 07:36:30,307 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:36:30,547 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:36:32,938 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:36:33,890 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:36:38,229 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:36:42,602 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:36:43,796 - INFO - Episode complete! Total reward: 239.3727993965149
+2025-02-13 07:36:43,798 - INFO - Episode data saved successfully
+2025-02-13 07:36:43,801 - INFO - Q-table saved successfully
+2025-02-13 07:36:46,749 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:36:50,429 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:36:50,557 - INFO - Episode complete! Total reward: 164.7633194923401
+2025-02-13 07:36:50,561 - INFO - Episode data saved successfully
+2025-02-13 07:36:50,564 - INFO - Q-table saved successfully
+2025-02-13 07:36:58,725 - INFO - Episode complete! Total reward: 128.8660979270935
+2025-02-13 07:36:58,729 - INFO - Episode data saved successfully
+2025-02-13 07:36:58,731 - INFO - Q-table saved successfully
+2025-02-13 07:37:03,634 - ERROR - Error updating Q-value: ''
+2025-02-13 07:37:05,406 - INFO - Episode complete! Total reward: 164.02294874191284
+2025-02-13 07:37:05,408 - INFO - Episode data saved successfully
+2025-02-13 07:37:05,413 - INFO - Q-table saved successfully
+2025-02-13 07:37:10,201 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:37:10,797 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:11,150 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:37:14,595 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:37:18,535 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:18,656 - INFO - Episode complete! Total reward: 128.74835968017578
+2025-02-13 07:37:18,658 - INFO - Episode data saved successfully
+2025-02-13 07:37:18,663 - INFO - Q-table saved successfully
+2025-02-13 07:37:21,434 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:37:21,898 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:37:22,733 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:37:25,130 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:25,732 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:26,834 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:37:32,723 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:37:32,848 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:33,471 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:33,939 - INFO - Episode complete! Total reward: 150.0052809715271
+2025-02-13 07:37:33,961 - INFO - Episode data saved successfully
+2025-02-13 07:37:33,963 - INFO - Q-table saved successfully
+2025-02-13 07:37:35,194 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:37:36,752 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:37:42,505 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:43,716 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:37:44,672 - INFO - Episode complete! Total reward: 304.24817085266113
+2025-02-13 07:37:44,675 - INFO - Episode data saved successfully
+2025-02-13 07:37:44,678 - INFO - Q-table saved successfully
+2025-02-13 07:37:45,784 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:37:46,136 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:46,852 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:37:49,635 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:52,255 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:52,977 - INFO - Episode complete! Total reward: 230.14695167541504
+2025-02-13 07:37:52,994 - INFO - Episode data saved successfully
+2025-02-13 07:37:52,997 - INFO - Q-table saved successfully
+2025-02-13 07:37:54,706 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:37:59,867 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:38:02,136 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:38:05,941 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:38:07,876 - INFO - Episode complete! Total reward: 345.93895196914673
+2025-02-13 07:38:07,879 - INFO - Episode data saved successfully
+2025-02-13 07:38:07,881 - INFO - Q-table saved successfully
+2025-02-13 07:38:08,852 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:38:09,567 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:38:09,923 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:38:11,713 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:38:12,867 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:38:13,689 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:38:19,133 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:38:20,551 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:38:21,047 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:38:21,866 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:38:27,852 - INFO - Episode complete! Total reward: 100196.94701194763
+2025-02-13 07:38:27,855 - INFO - Episode data saved successfully
+2025-02-13 07:38:27,856 - INFO - Q-table saved successfully
+2025-02-13 07:38:30,755 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:38:31,953 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:38:35,660 - INFO - Episode complete! Total reward: 75.7347822189331
+2025-02-13 07:38:35,664 - INFO - Episode data saved successfully
+2025-02-13 07:38:35,679 - INFO - Q-table saved successfully
+2025-02-13 07:38:36,588 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:38:37,058 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:38:39,182 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:38:41,969 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:38:42,203 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:38:42,552 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:38:43,858 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:38:44,343 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:38:48,617 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:38:49,555 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:38:52,610 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:38:53,328 - INFO - Episode complete! Total reward: 174.2766308784485
+2025-02-13 07:38:53,341 - INFO - Episode data saved successfully
+2025-02-13 07:38:53,343 - INFO - Q-table saved successfully
+2025-02-13 07:38:55,321 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:38:58,804 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:39:01,207 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:39:01,927 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:39:02,287 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:39:03,939 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:39:04,421 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:39:05,123 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:39:06,176 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:39:06,692 - INFO - Episode complete! Total reward: 181.2540316581726
+2025-02-13 07:39:06,697 - INFO - Episode data saved successfully
+2025-02-13 07:39:06,700 - INFO - Q-table saved successfully
+2025-02-13 07:39:08,055 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:39:08,534 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:39:09,603 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:39:12,485 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:39:14,395 - INFO - Episode complete! Total reward: 224.10017013549805
+2025-02-13 07:39:14,398 - INFO - Episode data saved successfully
+2025-02-13 07:39:14,401 - INFO - Q-table saved successfully
+2025-02-13 07:39:16,003 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:39:17,524 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:39:25,088 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:39:29,691 - INFO - Episode complete! Total reward: 250.70856094360352
+2025-02-13 07:39:29,694 - INFO - Episode data saved successfully
+2025-02-13 07:39:29,696 - INFO - Q-table saved successfully
+2025-02-13 07:39:37,301 - INFO - Episode complete! Total reward: 73.28819751739502
+2025-02-13 07:39:37,303 - INFO - Episode data saved successfully
+2025-02-13 07:39:37,305 - INFO - Q-table saved successfully
+2025-02-13 07:39:39,322 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:39:40,462 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:39:45,350 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:39:45,357 - INFO - Episode complete! Total reward: 77.77430057525635
+2025-02-13 07:39:45,359 - INFO - Episode data saved successfully
+2025-02-13 07:39:45,361 - INFO - Q-table saved successfully
+2025-02-13 07:39:46,976 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:39:50,003 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:39:54,254 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:39:54,378 - INFO - Episode complete! Total reward: 137.90997743606567
+2025-02-13 07:39:54,382 - INFO - Episode data saved successfully
+2025-02-13 07:39:54,384 - INFO - Q-table saved successfully
+2025-02-13 07:40:02,277 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:40:07,142 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:40:07,956 - INFO - Episode complete! Total reward: 132.94595003128052
+2025-02-13 07:40:07,960 - INFO - Episode data saved successfully
+2025-02-13 07:40:07,968 - INFO - Q-table saved successfully
+2025-02-13 07:40:15,555 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:40:16,917 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:40:17,501 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:40:22,228 - INFO - Episode complete! Total reward: 139.77519750595093
+2025-02-13 07:40:22,244 - INFO - Episode data saved successfully
+2025-02-13 07:40:22,248 - INFO - Q-table saved successfully
+2025-02-13 07:40:23,240 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:40:24,563 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:40:25,971 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:40:26,439 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:40:27,138 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:40:32,709 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:40:32,834 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:40:33,819 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:40:34,536 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:40:37,283 - INFO - Episode complete! Total reward: 197.511727809906
+2025-02-13 07:40:37,300 - INFO - Episode data saved successfully
+2025-02-13 07:40:37,303 - INFO - Q-table saved successfully
+2025-02-13 07:40:38,270 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:40:38,504 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:40:41,254 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:40:41,487 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:40:43,199 - ERROR - Error updating Q-value: ''
+2025-02-13 07:40:45,002 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:40:45,353 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:40:46,770 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:40:52,241 - INFO - Episode complete! Total reward: 146.74047946929932
+2025-02-13 07:40:52,244 - INFO - Episode data saved successfully
+2025-02-13 07:40:52,248 - INFO - Q-table saved successfully
+2025-02-13 07:40:56,485 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:40:57,670 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:40:58,021 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:41:00,025 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:41:06,837 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:41:06,962 - INFO - Episode complete! Total reward: 144.10725116729736
+2025-02-13 07:41:06,966 - INFO - Episode data saved successfully
+2025-02-13 07:41:06,968 - INFO - Q-table saved successfully
+2025-02-13 07:41:08,692 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:41:16,020 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:41:16,376 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:41:16,854 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:41:20,458 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:41:21,053 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:41:21,410 - INFO - Episode complete! Total reward: 141.63450956344604
+2025-02-13 07:41:21,415 - INFO - Episode data saved successfully
+2025-02-13 07:41:21,416 - INFO - Q-table saved successfully
+2025-02-13 07:41:26,787 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:41:29,591 - INFO - Episode complete! Total reward: 78.67940902709961
+2025-02-13 07:41:29,600 - INFO - Episode data saved successfully
+2025-02-13 07:41:29,603 - INFO - Q-table saved successfully
+2025-02-13 07:41:33,449 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:41:36,769 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:41:39,400 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:41:39,640 - INFO - Episode complete! Total reward: 97.64273881912231
+2025-02-13 07:41:39,642 - INFO - Episode data saved successfully
+2025-02-13 07:41:39,646 - INFO - Q-table saved successfully
+2025-02-13 07:41:40,559 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:41:53,649 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:41:54,991 - INFO - Episode complete! Total reward: 251.25410079956055
+2025-02-13 07:41:54,996 - INFO - Episode data saved successfully
+2025-02-13 07:41:55,000 - INFO - Q-table saved successfully
+2025-02-13 07:41:57,604 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:41:59,153 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:42:01,503 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:42:03,771 - INFO - Episode complete! Total reward: 84.934561252594
+2025-02-13 07:42:03,774 - INFO - Episode data saved successfully
+2025-02-13 07:42:03,777 - INFO - Q-table saved successfully
+2025-02-13 07:42:09,887 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:42:10,122 - ERROR - Error updating Q-value: ''
+2025-02-13 07:42:11,764 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:42:12,934 - ERROR - Error updating Q-value: ''
+2025-02-13 07:42:15,725 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:42:17,877 - INFO - Episode complete! Total reward: 138.71731996536255
+2025-02-13 07:42:17,881 - INFO - Episode data saved successfully
+2025-02-13 07:42:17,883 - INFO - Q-table saved successfully
+2025-02-13 07:42:20,528 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:42:23,634 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:42:25,418 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:42:25,651 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:42:26,011 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:42:26,140 - INFO - Episode complete! Total reward: 79.77277994155884
+2025-02-13 07:42:26,143 - INFO - Episode data saved successfully
+2025-02-13 07:42:26,146 - INFO - Q-table saved successfully
+2025-02-13 07:42:27,184 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:42:33,046 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:42:33,401 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:42:37,920 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:42:38,280 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:42:39,991 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:42:41,175 - INFO - Episode complete! Total reward: 148.078351020813
+2025-02-13 07:42:41,180 - INFO - Episode data saved successfully
+2025-02-13 07:42:41,182 - INFO - Q-table saved successfully
+2025-02-13 07:42:43,819 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:42:44,902 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:42:45,022 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:42:46,218 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:42:48,935 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:42:55,897 - INFO - Episode complete! Total reward: 144.30629014968872
+2025-02-13 07:42:55,900 - INFO - Episode data saved successfully
+2025-02-13 07:42:55,902 - INFO - Q-table saved successfully
+2025-02-13 07:42:56,411 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:42:57,950 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:42:58,302 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:43:04,190 - INFO - Episode complete! Total reward: 80.08327960968018
+2025-02-13 07:43:04,196 - INFO - Episode data saved successfully
+2025-02-13 07:43:04,199 - INFO - Q-table saved successfully
+2025-02-13 07:43:06,139 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:43:07,088 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:43:11,006 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:43:12,441 - INFO - Episode complete! Total reward: 79.65431928634644
+2025-02-13 07:43:12,445 - INFO - Episode data saved successfully
+2025-02-13 07:43:12,447 - INFO - Q-table saved successfully
+2025-02-13 07:43:17,718 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:43:18,772 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:43:20,920 - INFO - Episode complete! Total reward: 81.95070028305054
+2025-02-13 07:43:20,923 - INFO - Episode data saved successfully
+2025-02-13 07:43:20,926 - INFO - Q-table saved successfully
+2025-02-13 07:43:23,918 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 07:43:26,251 - ERROR - Error updating Q-value: ''
+2025-02-13 07:43:30,040 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:43:30,285 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:43:31,721 - INFO - Episode complete! Total reward: 205.25865077972412
+2025-02-13 07:43:31,723 - INFO - Episode data saved successfully
+2025-02-13 07:43:31,726 - INFO - Q-table saved successfully
+2025-02-13 07:43:33,650 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:43:35,650 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:43:37,296 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:43:39,202 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:43:40,396 - INFO - Episode complete! Total reward: 84.44644689559937
+2025-02-13 07:43:40,398 - INFO - Episode data saved successfully
+2025-02-13 07:43:40,399 - INFO - Q-table saved successfully
+2025-02-13 07:43:47,432 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:43:48,258 - INFO - Episode complete! Total reward: 75.87543249130249
+2025-02-13 07:43:48,260 - INFO - Episode data saved successfully
+2025-02-13 07:43:48,262 - INFO - Q-table saved successfully
+2025-02-13 07:43:55,233 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:43:55,470 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:43:58,088 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:43:59,506 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:44:01,261 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:44:03,998 - INFO - Episode complete! Total reward: 155.12912034988403
+2025-02-13 07:44:04,003 - INFO - Episode data saved successfully
+2025-02-13 07:44:04,006 - INFO - Q-table saved successfully
+2025-02-13 07:44:05,049 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:44:05,166 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:44:06,600 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:44:08,966 - ERROR - Error updating Q-value: 's'
+2025-02-13 07:44:14,050 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:44:14,173 - INFO - Episode complete! Total reward: 199.40239667892456
+2025-02-13 07:44:14,177 - INFO - Episode data saved successfully
+2025-02-13 07:44:14,179 - INFO - Q-table saved successfully
+2025-02-13 07:44:16,700 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:44:18,838 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:44:19,313 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 07:44:21,452 - ERROR - Error updating Q-value: 'a'
+2025-02-13 07:44:28,723 - INFO - Episode complete! Total reward: 192.63297080993652
+2025-02-13 07:44:28,728 - INFO - Episode data saved successfully
+2025-02-13 07:44:28,729 - INFO - Q-table saved successfully
+2025-02-13 07:44:29,466 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 07:44:31,730 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 07:44:35,890 - INFO - Episode complete! Total reward: 268.8804507255554
+2025-02-13 07:44:35,893 - INFO - Episode data saved successfully
+2025-02-13 07:44:35,896 - INFO - Q-table saved successfully
+2025-02-13 07:44:39,334 - ERROR - Error updating Q-value: 'd'
+2025-02-13 07:44:43,411 - INFO - Q-table saved successfully
+2025-02-13 08:15:19,441 - INFO - Q-table loaded successfully
+2025-02-13 08:15:19,442 - INFO - RacingAI initialized
+2025-02-13 08:15:25,671 - INFO - Game loaded successfully
+2025-02-13 08:15:37,005 - ERROR - Error updating Q-value: 's'
+2025-02-13 08:15:38,436 - ERROR - Error updating Q-value: 's'
+2025-02-13 08:15:38,906 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:15:42,814 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:15:43,064 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:15:45,436 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:15:48,000 - INFO - Episode complete! Total reward: 223.14608335494995
+2025-02-13 08:15:48,015 - INFO - Episode data saved successfully
+2025-02-13 08:15:48,017 - INFO - Q-table saved successfully
+2025-02-13 08:15:50,420 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:15:52,140 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:15:53,768 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:15:54,481 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:15:55,553 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:15:58,935 - ERROR - Error updating Q-value: 's'
+2025-02-13 08:15:59,533 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:00,138 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:16:00,969 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:16:02,266 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:16:02,975 - ERROR - Error updating Q-value: 'wd'
+2025-02-13 08:16:04,182 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 08:16:07,720 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:16:15,982 - INFO - Q-table saved successfully
+2025-02-13 08:16:17,762 - INFO - Q-table loaded successfully
+2025-02-13 08:16:17,762 - INFO - RacingAI initialized
+2025-02-13 08:16:21,874 - INFO - Game loaded successfully
+2025-02-13 08:16:27,082 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:16:28,585 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:30,685 - ERROR - Error updating Q-value: ''
+2025-02-13 08:16:34,204 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:37,679 - INFO - Episode complete! Total reward: 207.92218208312988
+2025-02-13 08:16:37,695 - INFO - Episode data saved successfully
+2025-02-13 08:16:37,697 - INFO - Q-table saved successfully
+2025-02-13 08:16:38,667 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:47,058 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:48,468 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:49,086 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:52,605 - INFO - Episode complete! Total reward: 146.22406005859375
+2025-02-13 08:16:52,607 - INFO - Episode data saved successfully
+2025-02-13 08:16:52,612 - INFO - Q-table saved successfully
+2025-02-13 08:16:53,584 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:16:55,225 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:16:59,298 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:16:59,532 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:00,962 - INFO - Episode complete! Total reward: 380.6519889831543
+2025-02-13 08:17:00,964 - INFO - Episode data saved successfully
+2025-02-13 08:17:00,966 - INFO - Q-table saved successfully
+2025-02-13 08:17:02,301 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:17:02,780 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:09,151 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:09,279 - INFO - Episode complete! Total reward: 80.31883955001831
+2025-02-13 08:17:09,282 - INFO - Episode data saved successfully
+2025-02-13 08:17:09,283 - INFO - Q-table saved successfully
+2025-02-13 08:17:17,198 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:17,667 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:18,383 - ERROR - Error updating Q-value: ''
+2025-02-13 08:17:19,206 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:17:20,866 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:17:23,115 - INFO - Episode complete! Total reward: 135.49676179885864
+2025-02-13 08:17:23,117 - INFO - Episode data saved successfully
+2025-02-13 08:17:23,120 - INFO - Q-table saved successfully
+2025-02-13 08:17:23,802 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:27,519 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:34,539 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:35,844 - ERROR - Error updating Q-value: 'wa'
+2025-02-13 08:17:37,974 - INFO - Episode complete! Total reward: 146.32702827453613
+2025-02-13 08:17:37,977 - INFO - Episode data saved successfully
+2025-02-13 08:17:37,979 - INFO - Q-table saved successfully
+2025-02-13 08:17:38,732 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:17:39,201 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:45,116 - INFO - Episode complete! Total reward: 218.493230342865
+2025-02-13 08:17:45,118 - INFO - Episode data saved successfully
+2025-02-13 08:17:45,119 - INFO - Q-table saved successfully
+2025-02-13 08:17:45,683 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:17:46,265 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:17:47,577 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:17:48,415 - ERROR - Error updating Q-value: 's'
+2025-02-13 08:17:53,437 - INFO - Episode complete! Total reward: 330.8897113800049
+2025-02-13 08:17:53,451 - INFO - Episode data saved successfully
+2025-02-13 08:17:53,454 - INFO - Q-table saved successfully
+2025-02-13 08:17:54,973 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:17:57,365 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:18:05,415 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:18:08,265 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:18:09,863 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:18:10,811 - INFO - Episode complete! Total reward: 271.2690305709839
+2025-02-13 08:18:10,828 - INFO - Episode data saved successfully
+2025-02-13 08:18:10,830 - INFO - Q-table saved successfully
+2025-02-13 08:18:13,109 - ERROR - Error updating Q-value: ''
+2025-02-13 08:18:14,063 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:18:16,213 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:18:17,298 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:18:19,864 - ERROR - Error updating Q-value: 's'
+2025-02-13 08:18:20,096 - ERROR - Error updating Q-value: 'a'
+2025-02-13 08:18:23,914 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:18:25,936 - ERROR - Error updating Q-value: 'sd'
+2025-02-13 08:18:27,242 - INFO - Episode complete! Total reward: 161.40695095062256
+2025-02-13 08:18:27,246 - INFO - Episode data saved successfully
+2025-02-13 08:18:27,248 - INFO - Q-table saved successfully
+2025-02-13 08:18:28,680 - ERROR - Error updating Q-value: 'd'
+2025-02-13 08:18:29,980 - ERROR - Error updating Q-value: 'sa'
+2025-02-13 08:18:30,038 - INFO - Q-table saved successfully
+2025-02-13 08:18:30,720 - INFO - Q-table loaded successfully
+2025-02-13 08:18:30,720 - INFO - RacingAI initialized
+2025-02-13 08:18:35,941 - ERROR - Critical error: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://app-polytrack.kodub.com/0.4.2/", waiting until "load"
+
+2025-02-13 08:18:35,944 - INFO - Q-table saved successfully
+2025-02-13 08:18:42,513 - INFO - Q-table loaded successfully
+2025-02-13 08:18:42,513 - INFO - RacingAI initialized
+2025-02-13 08:18:42,664 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<Connection.run.<locals>.init() running at /Users/kent_smith/Desktop/HACS/polytrackai/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:277> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[ProtocolCallback.__init__.<locals>.cb() at /Users/kent_smith/Desktop/HACS/polytrackai/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:198]>
+2025-02-13 08:18:43,128 - INFO - Q-table loaded successfully
+2025-02-13 08:18:43,129 - INFO - RacingAI initialized
+2025-02-13 08:18:44,768 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
