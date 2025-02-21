@@ -31,7 +31,7 @@ class RacingAI:
         self.epsilon = self.initial_epsilon
         self.actions = ['w', 'a', 'd', 's', 'wa', 'wd', 'sa', 'sd', '']
         self.load_q_table()
-        self.current_q=self.q_table[(0.0,0.0,False,False)]['w']
+        self.current_q=0.0
         self.last_successful_action = None
         self.action_momentum = 0.2
         logging.info("RacingAI initialized")
@@ -45,6 +45,12 @@ class RacingAI:
             if os.path.exists('q_table.json'):
                 with open('q_table.json', 'r') as f:
                     saved_q_table = json.load(f)
+                    # Initialize default values for all actions in the default state
+                    default_state = (0.0, 0.0, False, False)
+                    for action in self.actions:
+                        self.q_table[default_state][action] = 0.0
+
+                    # Load saved values
                     for state_str, actions in saved_q_table.items():
                         components = state_str.strip('()').split(',')
                         state = (
@@ -57,7 +63,10 @@ class RacingAI:
                 logging.info("Q-table loaded successfully")
         except Exception as e:
             logging.error(f"Error loading Q-table: {e}")
-            self.q_table = defaultdict(lambda: defaultdict(float))
+            # Initialize default values for all actions in the default state
+            default_state = (0.0, 0.0, False, False)
+            for action in self.actions:
+                self.q_table[default_state][action] = 0.0
 
     def save_q_table(self):
         try:
@@ -183,7 +192,9 @@ class RacingAI:
             speed_bin = round(float(speed) / 10) * 10
             checkpoint_num = int(checkpoint.split('/')[0])
 
-            return (speed_bin, checkpoint_num, hint_visible, time_announcer_visible)
+            actual_speed = round(float(speed))
+
+            return (speed_bin, checkpoint_num, hint_visible, time_announcer_visible, actual_speed)
         except Exception as e:
             logging.error(f"Error getting state: {e}")
             return (0, 0, False, False)
@@ -221,6 +232,9 @@ def run_ai():
             total_reward = 0
             start_time = time.time()
 
+            bump = False
+            bump_duration = 0
+
             while True:
                 try:
                     current_state = ai.get_state(page)
@@ -230,6 +244,50 @@ def run_ai():
                         ai.actions = ['w', 'w', 'a', 'wa', 'wa', 'wd', 'sa', 'sd', '']
                     else:
                         ai.actions = ['w', 'a', 'd', 's', 'wa', 'wd', 'sa', 'sd', '']
+
+
+
+
+                    if last_state is not None:
+                        passed = True
+                        diff_speeds = last_state[4] - current_state[4]
+                        if diff_speeds>2:
+                            if (action == 'sa' or action == 'sd') and diff_speeds>10:
+                                #print('turn slow')
+                                passed = False
+                                if not bump:
+                                    bump = True
+                                    bump_duration = 1
+                                    print("sa/sd bump!")
+                                else:
+                                    bump_duration += 1
+                            elif action == 's' and diff_speeds>15:
+                                #print('slow slow')
+                                passed = False
+                                if not bump:
+                                    bump = True
+                                    bump_duration = 1
+                                    print("s bump!")
+                                else:
+                                    bump_duration += 1
+                            elif diff_speeds>5 and not (action=='s' or action == 'sa' or action == 'sd'):
+                                #print('normal slow')
+                                passed = False
+                                if not bump:
+                                    bump = True
+                                    bump_duration = 1
+                                    print("bump!")
+                                else:
+                                    bump_duration += 1
+                            elif bump_duration>0:
+                                if diff_speeds > bump_duration:
+                                    print('still bumping')
+                                    passed = False
+                                    bump_duration += 1
+                            if passed:
+                                bump = False
+                                bump_duration = 0
+
 
                     action = ai.choose_action(current_state)
 
@@ -251,11 +309,13 @@ def run_ai():
                         if current_state[3]:  # Time announcer reward
                             reward += 100000000000
                         if time.time()>start_time+55:#180:
-                            reward-= 10000
+                            reward-= 100000
                             #print('subtracted')
                         #print(reward)
                         if current_state[2]:
-                            reward-=50*(180-time_elapsed)
+                            reward-=50000*(180-time_elapsed)
+                        if bump:
+                            reward-=bump_duration*350
                     except Exception as e:
                         logging.error(f"Error calculating reward: {e}")
                         reward = 0
@@ -270,22 +330,30 @@ def run_ai():
                     except Exception as e:
                         logging.error(f"Error applying action: {e}")
 
+
+                    total_reward = 0
+                    for data in episode_data:
+                        total_reward+=data['reward']
+
                     # Save episode data
                     episode_data.append({
                         'state': str(current_state),
                         'action': action,
-                        'reward': reward - total_reward,
-                        'total_reward': reward
+                        'reward': reward,
+                        'total_reward': total_reward + reward
                     })
 
                     # Update tracking variables
                     last_state = current_state
                     last_action = action
-                    total_reward = reward
                     time_elapsed = time.time()-start_time
 
+
+
                     # Handle episode completion
+
                     if current_state[2] or current_state[3] or time_elapsed>180:  # hint_visible or time_announcer_visible
+                        episode_data
                         logging.info(f"Episode complete! Total reward: {total_reward}")
                         ai.save_episode(episode_data)
                         ai.save_q_table()
@@ -302,6 +370,9 @@ def run_ai():
                         last_action = None
                         total_reward = 0
                         start_time = time.time()
+
+                        bump = False
+                        bump_duration = 0
 
                     time.sleep(0.025)
 
