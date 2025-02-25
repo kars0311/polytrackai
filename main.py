@@ -344,7 +344,7 @@ class RacingAI(RacingAI):  # Inherits from your existing RacingAI class
         )
 
         # Use track-based recommendation with some probability
-        if recommended_actions and np.random.random() < 0.55:
+        if recommended_actions and np.random.random() < 0.34:
             return recommended_actions[0]
 
         # Otherwise use normal Q-learning action selection
@@ -397,7 +397,48 @@ def run_ai():
                     else:
                         raise Exception("Failed to load game after multiple attempts")
 
-            time.sleep(10)  # Wait for game to stabilize
+            page.wait_for_selector('.menu .button-image', timeout=10000)
+            time.sleep(1.25)
+            play_button = page.query_selector('.menu .button-image:has(img[src="images/play.svg"])')
+
+            if play_button:
+                play_button.click()
+                logging.info("Clicked Play Button")
+            else:
+                logging.info("Play Botton Not Found")
+
+
+
+            track4_selector = '.track:nth-child(5) button'
+            page.wait_for_selector(track4_selector, timeout=10000)
+            time.sleep(1.25)
+            track4_button = page.query_selector(track4_selector)
+
+            if track4_button:
+                track4_button.click()
+                logging.info("Clicked Track 4")
+            else:
+                logging.info("Track 4 Button Not Found")
+                # Try an alternative selector if the first one fails
+                tracks = page.query_selector_all('.track button')
+                if len(tracks) >= 4:
+                    tracks[3].click()  # Zero-based index, so 3 is the 4th track
+                    logging.info("Clicked Track 4 using alternative method")
+
+
+            play_button_selector = '.track-info .side-panel .button.play'
+
+            page.wait_for_selector(play_button_selector, timeout=10000)
+            time.sleep(1.25)
+            play_button = page.query_selector(play_button_selector)
+
+            if play_button:
+                play_button.click()
+                logging.info("Clicked Play Button in Track Info")
+            else:
+                logging.info("Play Button in Track Info Not Found")
+
+            time.sleep(2.5)
 
             episode_data = []
             last_state = None
@@ -411,12 +452,6 @@ def run_ai():
             while True:
                 try:
                     current_state = ai.get_state(page)
-                    '''if time.time()-start_time>.2 and time.time()-start_time<11:
-                        ai.actions=['w', 'w', 'w', 'w', 's', 'wa', 'w', 'w', 'wd', 'w', 'w', 'a', 'd', 'sa', 'sd', '']
-                    elif time.time()-start_time>11 and time.time()-start_time<14:
-                        ai.actions = ['w', 'w', 'a', 'wa', 'wa', 'wd', 'sa', 'sd', '']
-                    else:
-                        ai.actions = ['w', 'a', 'd', 's', 'wa', 'wd', 'sa', 'sd', '']'''
 
 
 
