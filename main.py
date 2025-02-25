@@ -383,8 +383,10 @@ def run_ai():
 
         try:
             # Load game with explicit wait and retry logic
+            time.sleep(.5)
             max_retries = 3
             for attempt in range(max_retries):
+                time.sleep(.5)
                 try:
                     page.goto("https://app-polytrack.kodub.com/0.4.2/", timeout=30000)
                     page.wait_for_selector("#screen", timeout=30000)
@@ -396,7 +398,7 @@ def run_ai():
                         time.sleep(5)
                     else:
                         raise Exception("Failed to load game after multiple attempts")
-
+            time.sleep(.5)
             page.wait_for_selector('.menu .button-image', timeout=10000)
             time.sleep(1.25)
             play_button = page.query_selector('.menu .button-image:has(img[src="images/play.svg"])')
@@ -404,11 +406,13 @@ def run_ai():
             if play_button:
                 play_button.click()
                 logging.info("Clicked Play Button")
+                time.sleep(.5)
             else:
                 logging.info("Play Botton Not Found")
 
 
 
+            time.sleep(.5)
             track4_selector = '.track:nth-child(5) button'
             page.wait_for_selector(track4_selector, timeout=10000)
             time.sleep(1.25)
@@ -433,7 +437,9 @@ def run_ai():
             play_button = page.query_selector(play_button_selector)
 
             if play_button:
+                time.sleep(.5)
                 play_button.click()
+                time.sleep(.5)
                 logging.info("Clicked Play Button in Track Info")
             else:
                 logging.info("Play Button in Track Info Not Found")
@@ -466,7 +472,7 @@ def run_ai():
                                 if not bump:
                                     bump = True
                                     bump_duration = 1
-                                    print("sa/sd bump!")
+                                    #print("sa/sd bump!")
                                 else:
                                     bump_duration += 1
                             elif action == 's' and diff_speeds>15:
@@ -475,7 +481,7 @@ def run_ai():
                                 if not bump:
                                     bump = True
                                     bump_duration = 1
-                                    print("s bump!")
+                                    #print("s bump!")
                                 else:
                                     bump_duration += 1
                             elif diff_speeds>5 and not (action=='s' or action == 'sa' or action == 'sd'):
@@ -484,12 +490,12 @@ def run_ai():
                                 if not bump:
                                     bump = True
                                     bump_duration = 1
-                                    print("bump!")
+                                    #print("bump!")
                                 else:
                                     bump_duration += 1
                             elif bump_duration>0:
                                 if diff_speeds > bump_duration:
-                                    print('still bumping')
+                                    #print('still bumping')
                                     passed = False
                                     bump_duration += 1
                             if passed:
@@ -499,7 +505,7 @@ def run_ai():
                             if not bump:
                                 bump = True
                                 bump_duration = 1
-                                print("bump!")
+                                #print("bump!")
                             else:
                                 bump_duration += 1
 
@@ -567,7 +573,7 @@ def run_ai():
 
                     # Handle episode completion
 
-                    if (current_state[2] or current_state[3] or time_elapsed>180) and time_elapsed>5:  # hint_visible or time_announcer_visible
+                    if (current_state[2] or current_state[3] or time_elapsed>180) and time_elapsed>5: #5:  # hint_visible or time_announcer_visible
                         episode_data
                         logging.info(f"Episode complete! Total reward: {total_reward}")
                         ai.save_episode(episode_data)
