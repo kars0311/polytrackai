@@ -13,6 +13,8 @@ import concurrent.futures
 import multiprocessing
 from threading import Lock
 
+
+
 # Set up logging
 logging.basicConfig(
     level=logging.INFO,
@@ -27,6 +29,8 @@ logging.basicConfig(
 q_table_lock = Lock()
 track_data_lock = Lock()
 episode_data_lock = Lock()
+
+number_agents_decided= 10
 
 
 class RacingAI:
@@ -106,6 +110,8 @@ class RacingAI:
             # Apply momentum - chance to repeat last successful action
             if time_elapsed < 6 and np.random.random() < .4:
                 return np.random.choice(['w', 'wa', 'wd', 'w', 'w'])
+            elif time_elapsed<10 and np.random.random()<.3:
+                return np.random.choice(['a','wa'])
 
             if self.last_successful_action and np.random.random() < self.action_momentum:
                 # get rid of after it stops moving back at start
@@ -396,8 +402,10 @@ class EnhancedRacingAI(RacingAI):  # Inherits from your existing RacingAI class
 
 def agent_thread(agent_id, stop_event):
     ai = EnhancedRacingAI(agent_id)
+   # print(agent_id)
 
-    with sync_playwright() as p:
+
+    with (sync_playwright() as p):
         browser = p.chromium.launch(headless=False)
         context = browser.new_context(viewport={'width': 1280, 'height': 720})
         page = context.new_page()
@@ -421,7 +429,7 @@ def agent_thread(agent_id, stop_event):
                         raise Exception(f"Agent {agent_id}: Failed to load game after multiple attempts")
             time.sleep(.5)
             page.wait_for_selector('.menu .button-image', timeout=10000)
-            time.sleep(1.25)
+            time.sleep(1.5 + 2*(number_agents_decided-agent_id))
             play_button = page.query_selector('.menu .button-image:has(img[src="images/play.svg"])')
 
             if play_button:
@@ -469,6 +477,7 @@ def agent_thread(agent_id, stop_event):
             last_action = None
             total_reward = 0
             start_time = time.time()
+            checkpoints_hit = 0
 
             bump = False
             bump_duration = 0
@@ -521,19 +530,29 @@ def agent_thread(agent_id, stop_event):
 
                     # Calculate reward with error handling
                     try:
-                        if current_state[0] < 100 or time.time() - start_time < 5:
-                            reward = float(current_state[0]) * 5  # Speed reward
-                        elif current_state[0] > 200:
-                            reward = float(current_state[0]) * 3
+                        multiplier=0
+                        if not (checkpoints_hit == 0):
+                            multiplier = checkpoints_hit
                         else:
-                            reward = 100
-                        if current_state[0] > 5:
-                            reward += (time.time() - start_time) * 10
-                        if current_state[1] > 0:  # Checkpoint reward
-                            reward += (100000 * current_state[1]) ** (3 / 2)
+                            multiplier = 1
 
+                        if current_state[0] < 100 or time.time() - start_time < 5:
+                            reward = float(current_state[0]) * 5 * (multiplier**(3/2))  # Speed reward
+                        elif current_state[0] > 200:
+                            reward = float(current_state[0]) * 3 * (multiplier**(3/2))
+                        else:
+                            reward = 100 * (3*current_state[1]**(3/2))
+                        if time_elapsed>5 and time_elapsed<60 and current_state[0]<75:
+                            reward += float(current_state[0]) * 5 * (multiplier**(3/2))
+                        if current_state[0] > 5:
+                            reward += (time.time() - start_time) * 10 * (multiplier**(3/2))
+                        if last_state is not None:
+                            if current_state[1] > last_state[1]:  # Checkpoint reward
+                                reward += (1000000 * current_state[1]) ** (3 / 2)
+                                checkpoints_hit+=1
+                            reward += checkpoints_hit*5000
                         if current_state[3]:  # Time announcer reward
-                            reward += 100000000000
+                            reward += 10000000000000
                         if time.time() > start_time + 55:  # 180:
                             reward -= 100000
                         if current_state[2]:
@@ -572,6 +591,7 @@ def agent_thread(agent_id, stop_event):
 
                     # Handle episode completion
                     if (current_state[2] or current_state[3] or time_elapsed > 180) and time_elapsed > 5:  # hint_visible or time_announcer_visible
+
                         logging.info(f"Agent {agent_id}: Episode complete! Total reward: {total_reward}")
                         ai.save_episode(episode_data)
                         ai.save_q_table()
@@ -588,6 +608,7 @@ def agent_thread(agent_id, stop_event):
                         last_action = None
                         total_reward = 0
                         start_time = time.time()
+                        checkpoints_hit=0
 
                         bump = False
                         bump_duration = 0
@@ -652,4 +673,5 @@ def run_multi_agent(num_agents=3):
 if __name__ == "__main__":
     # Number of parallel agents to run (adjust based on your system's capabilities)
     num_agents = 4
+    number_agents_decided=num_agents
     run_multi_agent(num_agents)
