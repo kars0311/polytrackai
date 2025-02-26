@@ -113,6 +113,9 @@ class RacingAI:
             elif time_elapsed<10 and np.random.random()<.3:
                 return np.random.choice(['a','wa'])
 
+            if(state[1]>0 and state[1]<2 and np.random.random()<.4):
+                return 'w'
+
             if self.last_successful_action and np.random.random() < self.action_momentum:
                 # get rid of after it stops moving back at start
                 if self.last_successful_action == 's':
@@ -546,6 +549,10 @@ def agent_thread(agent_id, stop_event):
                             reward += float(current_state[0]) * 5 * (multiplier**(3/2))
                         if current_state[0] > 5:
                             reward += (time.time() - start_time) * 10 * (multiplier**(3/2))
+                        elif current_state[4]<20:
+                            reward-=1000
+                            if current_state[1]>0:
+                                reward-=50000
                         if last_state is not None:
                             if current_state[1] > last_state[1]:  # Checkpoint reward
                                 reward += (1000000 * current_state[1]) ** (3 / 2)
@@ -555,6 +562,8 @@ def agent_thread(agent_id, stop_event):
                             reward += 10000000000000
                         if time.time() > start_time + 55:  # 180:
                             reward -= 100000
+                            if checkpoints_hit>0:
+                                reward -= 1000000*checkpoints_hit
                         if current_state[2]:
                             reward -= 500 * (180 - time_elapsed)  # was 50000
                         if bump:
