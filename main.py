@@ -175,7 +175,7 @@ class RacingAI:
         except Exception as e:
             logging.error(f"Agent {self.agent_id}: Error applying action: {e}")
 
-    def get_state(self, page):
+    def get_state(self, page, bump=False):
         try:
             # Get speed with error handling
             speed = page.evaluate("""
@@ -221,10 +221,10 @@ class RacingAI:
 
             actual_speed = round(float(speed))
 
-            return (speed_bin, checkpoint_num, hint_visible, time_announcer_visible, actual_speed)
+            return (speed_bin, checkpoint_num, hint_visible, time_announcer_visible, actual_speed, bump)
         except Exception as e:
             logging.error(f"Agent {self.agent_id}: Error getting state: {e}")
-            return (0, 0, False, False)
+            return (0, 0, False, False, 0, False)
 
 
 @dataclass
@@ -403,6 +403,8 @@ class EnhancedRacingAI(RacingAI):  # Inherits from your existing RacingAI class
         self.last_checkpoint = 0
 
 
+
+
 def agent_thread(agent_id, stop_event):
     ai = EnhancedRacingAI(agent_id)
    # print(agent_id)
@@ -485,9 +487,11 @@ def agent_thread(agent_id, stop_event):
             bump = False
             bump_duration = 0
 
+            training_done=0
+
             while not stop_event.is_set():
                 try:
-                    current_state = ai.get_state(page)
+                    current_state = ai.get_state(page, bump)
 
                     if last_state is not None:
                         passed = True
@@ -591,7 +595,8 @@ def agent_thread(agent_id, stop_event):
                         'state': str(current_state),
                         'action': action,
                         'reward': reward,
-                        'total_reward': total_reward + reward
+                        'total_reward': total_reward + reward,
+                        'bumped': bump
                     })
 
                     # Update tracking variables
@@ -601,7 +606,8 @@ def agent_thread(agent_id, stop_event):
                     # Handle episode completion
                     if (current_state[2] or current_state[3] or time_elapsed > 180) and time_elapsed > 5:  # hint_visible or time_announcer_visible
 
-                        logging.info(f"Agent {agent_id}: Episode complete! Total reward: {total_reward}")
+                        training_done+=1
+                        logging.info(f"Agent {agent_id}: Episode complete! Total reward: {total_reward},  Attempt: {training_done}")
                         ai.save_episode(episode_data)
                         ai.save_q_table()
                         ai.decay_epsilon()
@@ -610,6 +616,9 @@ def agent_thread(agent_id, stop_event):
                         time.sleep(0.1)
                         page.keyboard.press('r')
                         time.sleep(0.1)
+
+                        training_done+=1
+
 
                         # Reset episode variables
                         episode_data = []
@@ -681,6 +690,6 @@ def run_multi_agent(num_agents=3):
 
 if __name__ == "__main__":
     # Number of parallel agents to run (adjust based on your system's capabilities)
-    num_agents = 4
+    num_agents = 3
     number_agents_decided=num_agents
     run_multi_agent(num_agents)
