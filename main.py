@@ -119,7 +119,7 @@ class RacingAI:
                 if(state[0]<41):
                     return 'w'
                 else:
-                    return 's'
+                    return ''
 
             if self.last_successful_action and np.random.random() < self.action_momentum:
                 # get rid of after it stops moving back at start
