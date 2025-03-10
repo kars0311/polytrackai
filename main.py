@@ -764,7 +764,7 @@ def agent_thread(agent_id, stop_event, sequence_length=20, invisible=True):
     ai = EnhancedSequenceRacingAI(agent_id, sequence_length=sequence_length)
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=visible)
+        browser = p.chromium.launch(headless=invisible)
         context = browser.new_context(viewport={'width': 1280, 'height': 720})
         page = context.new_page()
 
