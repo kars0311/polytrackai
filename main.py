@@ -33,22 +33,42 @@ episode_data_lock = Lock()
 number_agents_decided= 10
 
 
-
 class RacingAI:
-    def __init__(self, agent_id=0):
+    def __init__(self, agent_id=0, sequence_length=20):
         self.agent_id = agent_id
+        self.sequence_length = sequence_length
+
+        # Basic Q-learning parameters
         self.q_table = defaultdict(lambda: defaultdict(float))
+        self.sequence_q_table = defaultdict(lambda: defaultdict(float))
         self.learning_rate = 0.1
         self.discount_factor = 0.98
         self.initial_epsilon = 0.25
         self.min_epsilon = 0.02
-        self.epsilon_decay = 0.9985  # Adjust this value to control decay speed
+        self.epsilon_decay = 0.9985
         self.epsilon = self.initial_epsilon
         self.actions = ['w', 'wa', 'wd', 'a', 'd', 's', 'sa', 'sd', '']
-        self.load_q_table()
         self.current_q = 0.0
         self.last_successful_action = None
         self.action_momentum = 0.2
+
+        # Sequence-based learning components
+        self.action_history = []
+        self.state_history = []
+        self.reward_history = []
+
+        # Track mapping components
+        self.track_mapper = TrackMapper(agent_id)
+        self.sequence_start_time = time.time()
+        self.last_checkpoint = 0
+
+        # Track sequence memory
+        self.track_sequence_memory = defaultdict(list)
+
+        # Load saved data
+        self.load_q_table()
+        self.load_sequence_q_table()
+        self.load_track_sequences()
 
         logging.info(f"RacingAI {agent_id} initialized")
 
@@ -85,6 +105,48 @@ class RacingAI:
             for action in self.actions:
                 self.q_table[default_state][action] = 0.0
 
+    def load_sequence_q_table(self):
+        """Load the sequence-based Q-table from disk"""
+        try:
+            with q_table_lock:
+                if os.path.exists('sequence_q_table.json'):
+                    with open('sequence_q_table.json', 'r') as f:
+                        saved_q_table = json.load(f)
+
+                        # Load saved values
+                        for state_str, actions in saved_q_table.items():
+                            # Parse the state string back into a tuple
+                            components = state_str.strip('()').split(',')
+                            if len(components) >= 5:  # Make sure we have enough components
+                                state = (
+                                    float(components[0]),
+                                    float(components[1]),
+                                    components[2].strip().strip("'"),
+                                    components[3].strip().lower() == 'true',
+                                    components[4].strip().lower() == 'true'
+                                )
+                                self.sequence_q_table[state] = actions
+                    logging.info(f"Agent {self.agent_id}: Sequence Q-table loaded successfully")
+        except Exception as e:
+            logging.error(f"Agent {self.agent_id}: Error loading sequence Q-table: {e}")
+
+    def load_track_sequences(self):
+        """Load successful track sequences from file"""
+        try:
+            if os.path.exists('track_sequences.json'):
+                with open('track_sequences.json', 'r') as f:
+                    data = json.load(f)
+
+                for key_str, sequences in data.items():
+                    # Parse the key back to a tuple
+                    key_parts = key_str.strip('()').split(',')
+                    track_key = (int(key_parts[0]), float(key_parts[1]))
+                    self.track_sequence_memory[track_key] = sequences
+
+                logging.info(f"Agent {self.agent_id}: Track sequences loaded successfully")
+        except Exception as e:
+            logging.error(f"Agent {self.agent_id}: Error loading track sequences: {e}")
+
     def save_q_table(self):
         try:
             # Convert defaultdict to regular dict and tuple keys to strings
@@ -96,6 +158,32 @@ class RacingAI:
         except Exception as e:
             logging.error(f"Agent {self.agent_id}: Error saving Q-table: {e}")
 
+    def save_sequence_q_table(self):
+        """Save the sequence-based Q-table to disk"""
+        try:
+            with q_table_lock:
+                # Convert defaultdict to regular dict and tuple keys to strings
+                q_table_dict = {str(state): actions for state, actions in self.sequence_q_table.items()}
+                with open('sequence_q_table.json', 'w') as f:
+                    json.dump(q_table_dict, f)
+            logging.info(f"Agent {self.agent_id}: Sequence Q-table saved successfully")
+        except Exception as e:
+            logging.error(f"Agent {self.agent_id}: Error saving sequence Q-table: {e}")
+
+    def save_track_sequences(self):
+        """Save successful track sequences to file"""
+        try:
+            # Convert to a serializable format
+            data = {}
+            for track_key, sequences in self.track_sequence_memory.items():
+                data[str(track_key)] = sequences
+
+            with open('track_sequences.json', 'w') as f:
+                json.dump(data, f)
+            logging.info(f"Agent {self.agent_id}: Track sequences saved successfully")
+        except Exception as e:
+            logging.error(f"Agent {self.agent_id}: Error saving track sequences: {e}")
+
     def save_episode(self, episode_data):
         try:
             with episode_data_lock:
@@ -103,47 +191,225 @@ class RacingAI:
                     json.dump(episode_data, f)
                     f.write('\n')
             logging.info(f"Agent {self.agent_id}: Episode data saved successfully")
+
+            # Save other data structures
+            self.save_q_table()
+            self.save_sequence_q_table()
+            self.track_mapper.save_track_data()
+            self.save_track_sequences()
+
+            # Reset sequence tracking
+            self.sequence_start_time = time.time()
+            self.last_checkpoint = 0
+
         except Exception as e:
             logging.error(f"Agent {self.agent_id}: Error saving episode data: {e}")
 
-    def choose_action(self, state, time_elapsed):
-        try:
-            # Apply momentum - chance to repeat last successful action
-            if time_elapsed < 6 and np.random.random() < .4:
-                return np.random.choice(['w', 'wa', 'wd', 'w', 'w'])
-            elif time_elapsed<10 and np.random.random()<.3:
-                return np.random.choice(['a','wa'])
+    def get_sequence_state(self, current_state):
+        """
+        Create a composite state that includes the current state
+        and a summary of the recent action history
+        """
+        # Get the action frequency in the history
+        action_counts = {}
+        for action in self.actions:
+            action_counts[action] = self.action_history.count(action)
 
+        # Create a summary of the sequence (e.g., most common actions)
+        if self.action_history:
+            most_common = max(action_counts.items(), key=lambda x: x[1])[0]
+            sequence_summary = most_common
+        else:
+            sequence_summary = ''
 
-            if(state[1]>0 and state[1]<2):
-                if(state[0]<41):
-                    return 'w'
+        # Combine with current state
+        return (current_state[0], current_state[1], sequence_summary,
+                current_state[2], current_state[3], current_state[5])
+
+    def update_histories(self, state, action, reward):
+        """Add new state, action and reward to histories and trim to sequence_length"""
+        self.state_history.append(state)
+        self.action_history.append(action)
+        self.reward_history.append(reward)
+
+        # Keep only the most recent entries
+        if len(self.state_history) > self.sequence_length:
+            self.state_history = self.state_history[-self.sequence_length:]
+            self.action_history = self.action_history[-self.sequence_length:]
+            self.reward_history = self.reward_history[-self.sequence_length:]
+
+    def choose_action(self, state, time_elapsed, trials=0):
+        # Early game accelerations (time-based strategies)
+        if time_elapsed < 6.26 and np.random.random() < .66 and trials < 251:
+            return np.random.choice(['w', 'w', 'wa', 'wd', 'wd', 'w', 'w', 'w'])
+        if time_elapsed > 6.25 and time_elapsed < 9.76 and np.random.random() < .333 and trials < 251:
+            return np.random.choice(['wa', 'a', 'wa'])
+        if state[4] < 31 and np.random.random() < .95:
+            return np.random.choice(['w', 'w', 'wa', 'wd', 'w'])
+
+        # Get track mapping recommendations
+        sequence_time = time.time() - self.sequence_start_time
+        recommended_actions = self.track_mapper.get_recommended_actions(
+            state[1],  # checkpoint
+            state[4],  # speed
+            sequence_time
+        )
+
+        # Get sequence state
+        sequence_state = self.get_sequence_state(state)
+
+        # Get historical sequences for this track segment
+        track_key = (state[1], round(state[4] / 10) * 10)  # Checkpoint and binned speed
+        historical_sequences = self.track_sequence_memory.get(track_key, [])
+
+        # Choose between different strategies
+        choice = np.random.random()
+
+        # Strategy 1: Use track mapper recommendations
+        if recommended_actions and choice < 0.3:
+            action = recommended_actions[0]
+
+        # Strategy 2: Use historical successful sequences
+        elif historical_sequences and choice < 0.6:
+            try:
+                # Sort by reward and get top sequences
+                top_sequences = sorted(historical_sequences, key=lambda x: x[1], reverse=True)[:3]
+
+                # Choose a sequence proportional to its reward
+                weights = np.array([seq[1] for seq in top_sequences])
+                if weights.sum() > 0:
+                    weights = weights / weights.sum()  # Normalize
+                    chosen_idx = np.random.choice(len(top_sequences), p=weights)
+
+                    # Get an action from the chosen sequence
+                    chosen_sequence = top_sequences[chosen_idx][0]
+                    if chosen_sequence:
+                        # Choose action based on where we are in the current action history
+                        position = len(self.action_history) % len(chosen_sequence)
+                        action = chosen_sequence[position]
+                    else:
+                        # Fallback to exploration/exploitation
+                        action = self._select_from_q_tables(state, sequence_state)
                 else:
-                    return ''
+                    # Fallback to exploration/exploitation
+                    action = self._select_from_q_tables(state, sequence_state)
+            except (ValueError, IndexError) as e:
+                logging.debug(f"Agent {self.agent_id}: Minor error in historical sequence selection: {e}")
+                # Fallback to exploration/exploitation
+                action = self._select_from_q_tables(state, sequence_state)
 
-            if self.last_successful_action and np.random.random() < self.action_momentum:
-                # get rid of after it stops moving back at start
-                if self.last_successful_action == 's':
-                    return self.last_successful_action
+        # Strategy 3: Use Q-learning (exploration/exploitation)
+        else:
+            action = self._select_from_q_tables(state, sequence_state)
+
+        # Record the action for track mapping
+        self.track_mapper.add_action(
+            action,
+            state[1],  # checkpoint
+            state[4],  # speed
+            self.current_q
+        )
+
+        # Check if we've reached a new checkpoint
+        if state[1] > self.last_checkpoint:
+            # Save successful sequence for this track segment if reward is good
+            if len(self.action_history) >= 5:  # Only save meaningful sequences
+                avg_reward = sum(self.reward_history) / len(self.reward_history) if self.reward_history else 0
+                if avg_reward > 0:  # Only save positive reward sequences
+                    track_key = (self.last_checkpoint, round(state[4] / 10) * 10)
+                    self.track_sequence_memory[track_key].append(
+                        (self.action_history.copy(), avg_reward)
+                    )
+                    # Keep only the top sequences
+                    if len(self.track_sequence_memory[track_key]) > 10:
+                        try:
+                            self.track_sequence_memory[track_key] = sorted(
+                                self.track_sequence_memory[track_key],
+                                key=lambda x: x[1],
+                                reverse=True
+                            )[:10]
+                        except (ValueError, TypeError) as e:
+                            logging.debug(f"Agent {self.agent_id}: Minor error in track sequence sorting: {e}")
+
+            # Reset sequence tracking for new checkpoint
+            self.sequence_start_time = time.time()
+            self.last_checkpoint = state[1]
+
+        return action
+
+    def _select_from_q_tables(self, state, sequence_state):
+        """Helper method to select action using exploration/exploitation"""
+        # Explore: Choose random action
+        if np.random.random() < self.epsilon:
+            # Sometimes use purely random actions
+            if np.random.random() < 0.7:
+                action = str(np.random.choice(self.actions))
+            else:
+                # Bias toward actions that worked well in similar situations
+                similar_sequences = [
+                    seq for seq in self.sequence_q_table.keys()
+                    if seq[0] == sequence_state[0] and seq[1] == sequence_state[1]
+                ]
+
+                if similar_sequences and np.random.random() < 0.8:
+                    # Choose from a successful similar sequence
+                    try:
+                        best_seq = max(similar_sequences,
+                                       key=lambda s: max(self.sequence_q_table[s].values() or [0]))
+
+                        if best_seq and self.sequence_q_table[best_seq]:
+                            max_q_value = max(self.sequence_q_table[best_seq].values())
+                            best_actions = [k for k, v in self.sequence_q_table[best_seq].items()
+                                            if v == max_q_value]
+                            action = np.random.choice(best_actions) if best_actions else np.random.choice(self.actions)
+                        else:
+                            action = np.random.choice(self.actions)
+                    except ValueError:
+                        action = np.random.choice(self.actions)
                 else:
-                    return 'w'
+                    # Momentum-based choice: repeat a recent successful action
+                    if self.action_history and np.random.random() < self.action_momentum:
+                        # Find the best action from history based on rewards
+                        if len(self.action_history) > 5:
+                            recent_pairs = list(zip(self.action_history[-5:], self.reward_history[-5:]))
+                            if recent_pairs:
+                                best_historical = max(recent_pairs, key=lambda x: x[1])[0]
+                                action = best_historical
+                            else:
+                                action = np.random.choice(self.actions)
+                        else:
+                            action = str(
+                                np.random.choice(self.action_history)) if self.action_history else np.random.choice(
+                                self.actions)
+                    else:
+                        action = np.random.choice(self.actions)
+        # Exploit: Choose best action
+        else:
+            # Try sequence Q-table first
+            q_values = self.sequence_q_table[sequence_state]
 
-            if np.random.random() < self.epsilon:
-                return str(np.random.choice(self.actions))
-
-            q_values = self.q_table[state]
+            # Fall back to standard Q-table if no sequence data
             if not q_values:
-                return str(np.random.choice(self.actions))
+                q_values = self.q_table[state]
 
-            best_action = str(max(q_values.items(), key=lambda x: x[1])[0])
-            self.last_successful_action = best_action
-            return best_action
-        except Exception as e:
-            logging.error(f"Agent {self.agent_id}: Error choosing action: {e}")
-            return ''
+            # If no Q-values available, choose randomly
+            if not q_values:
+                action = str(np.random.choice(self.actions))
+            else:
+                try:
+                    best_action = str(max(q_values.items(), key=lambda x: x[1])[0])
+                    action = best_action
+                except ValueError:
+                    action = str(np.random.choice(self.actions))
+
+            # Update last successful action
+            self.last_successful_action = action
+
+        return action
 
     def update_q_value(self, state, action, reward, next_state):
         try:
+            # Standard Q-table update
             # Ensure action is a string
             action = str(action)
 
@@ -160,6 +426,35 @@ class RacingAI:
 
             with q_table_lock:
                 self.q_table[state][action] = new_q
+
+            # Sequence Q-table update
+            try:
+                # Get sequence states
+                sequence_state = self.get_sequence_state(state)
+                next_sequence_state = self.get_sequence_state(next_state)
+
+                # Current Q-value for this sequence state and action
+                current_seq_q = float(self.sequence_q_table[sequence_state][action])
+
+                # Get next state values for the sequence
+                next_seq_values = {k: float(v) for k, v in self.sequence_q_table[next_sequence_state].items()}
+                next_seq_max_q = max(next_seq_values.values()) if next_seq_values else 0.0
+
+                # Use a higher learning rate for sequence learning to adapt faster
+                seq_learning_rate = min(0.1, self.learning_rate * 1.5)
+
+                # Apply the Q-learning update formula
+                new_seq_q = float(
+                    current_seq_q + seq_learning_rate *
+                    (reward + self.discount_factor * next_seq_max_q - current_seq_q))
+
+                with q_table_lock:
+                    self.sequence_q_table[sequence_state][action] = new_seq_q
+            except Exception as e:
+                logging.error(f"Agent {self.agent_id}: Error updating sequence Q-value: {str(e)}")
+
+            # Update the histories after Q-value updates
+            self.update_histories(state, action, reward)
 
         except Exception as e:
             logging.error(f"Agent {self.agent_id}: Error updating Q-value: {str(e)}")
@@ -185,9 +480,8 @@ class RacingAI:
         except Exception as e:
             logging.error(f"Agent {self.agent_id}: Error applying action: {e}")
 
-    def get_state(self, page, bump=False, time_elapsed = 0):
+    def get_state(self, page, bump=False, time_elapsed=0):
         try:
-
             # Get speed with error handling
             speed = page.evaluate("""
                 () => {
@@ -229,7 +523,7 @@ class RacingAI:
             # Discretize speed into bins of 10
             speed_bin = round(float(speed) / 10) * 10
             checkpoint_num = int(checkpoint.split('/')[0])
-            time_bin = int(time_elapsed/5)*5
+            time_bin = int(time_elapsed / 5) * 5
 
             actual_speed = round(float(speed))
 
@@ -368,400 +662,9 @@ class TrackMapper:
         except Exception as e:
             logging.error(f"Agent {self.agent_id}: Error loading track data: {e}")
 
-
-class EnhancedRacingAI(RacingAI):  # Inherits from your existing RacingAI class
-    def __init__(self, agent_id=0):
-        super().__init__(agent_id)
-        self.track_mapper = TrackMapper(agent_id)
-        self.sequence_start_time = time.time()
-        self.last_checkpoint = 0
-
-    def choose_action(self, state, time_elapsed):
-        # Get recommended actions from track mapping
-        sequence_time = time.time() - self.sequence_start_time
-        recommended_actions = self.track_mapper.get_recommended_actions(
-            state[1],  # checkpoint
-            state[4],  # speed
-            sequence_time
-        )
-
-        # Use track-based recommendation with some probability
-        if recommended_actions and np.random.random() < 0.34:
-            return recommended_actions[0]
-
-        # Otherwise use normal Q-learning action selection
-        action = super().choose_action(state, time_elapsed)
-
-        # Record the action
-        self.track_mapper.add_action(
-            action,
-            state[1],  # checkpoint
-            state[4],  # speed
-            self.current_q  # reward from parent class
-        )
-
-        # Check if we've reached a new checkpoint
-        if state[1] > self.last_checkpoint:
-            self.sequence_start_time = time.time()
-            self.last_checkpoint = state[1]
-
-        return action
-
-    def save_episode(self, episode_data):
-        super().save_episode(episode_data)
-        self.track_mapper.save_track_data()
-        # Reset sequence tracking
-        self.sequence_start_time = time.time()
-        self.last_checkpoint = 0
-
-
-class SequenceRacingAI(RacingAI):
-    def __init__(self, agent_id=0, sequence_length=20):
-        super().__init__(agent_id)
-        self.sequence_length = sequence_length
-        self.action_history = []  # Store the last N actions
-        self.state_history = []  # Store the last N states
-        self.reward_history = []  # Store rewards for the sequence
-
-        # Modify the Q-table structure to handle sequences
-        self.sequence_q_table = defaultdict(lambda: defaultdict(float))
-        self.load_sequence_q_table()
-
-    def get_sequence_state(self, current_state):
-        """
-        Create a composite state that includes the current state
-        and a summary of the recent action history
-        """
-        # Get the action frequency in the history
-        action_counts = {}
-        for action in self.actions:
-            action_counts[action] = self.action_history.count(action)
-
-        # Create a summary of the sequence (e.g., most common actions)
-        if self.action_history:
-            most_common = max(action_counts.items(), key=lambda x: x[1])[0]
-            sequence_summary = most_common
-        else:
-            sequence_summary = ''
-
-        # Combine with current state
-        return (current_state[0], current_state[1], sequence_summary,
-                current_state[2], current_state[3], current_state[5])
-
-    def update_histories(self, state, action, reward):
-        """Add new state, action and reward to histories and trim to sequence_length"""
-        self.state_history.append(state)
-        self.action_history.append(action)
-        self.reward_history.append(reward)
-
-        # Keep only the most recent entries
-        if len(self.state_history) > self.sequence_length:
-            self.state_history = self.state_history[-self.sequence_length:]
-            self.action_history = self.action_history[-self.sequence_length:]
-            self.reward_history = self.reward_history[-self.sequence_length:]
-
-    def choose_action(self, state, time_elapsed, trials):
-        # First update the sequence state
-        sequence_state = self.get_sequence_state(state)
-
-        if time_elapsed < 6.26 and np.random.random() < .66 and trials<251   :
-            return np.random.choice(['w', 'w', 'wa', 'wd', 'wd', 'w', 'w', 'w'])
-        if time_elapsed > 6.25 and time_elapsed<9.76 and np.random.random()<.333 and trials<251:
-            return np.random.choice(['wa','a','wa'])
-        if state[4] < 31 and np.random.random()<.95:
-            return np.random.choice(['w', 'w', 'wa', 'wd', 'w'])
-
-        # Apply exploration vs exploitation logic 
-        if np.random.random() < self.epsilon:
-            # For exploration, sometimes use purely random actions
-            if np.random.random() < 0.7:
-                action = str(np.random.choice(self.actions))
-            else:
-                # Other times, bias toward actions that worked well in similar situations
-                similar_sequences = [
-                    seq for seq in self.sequence_q_table.keys()
-                    if seq[0] == sequence_state[0] and seq[1] == sequence_state[1]
-                ]
-
-                if similar_sequences and np.random.random() < 0.8:
-                    # Choose from a successful similar sequence
-                    # Fix: Handle potential empty values
-                    best_seq = None
-                    try:
-                        best_seq = max(similar_sequences,
-                                       key=lambda s: max(self.sequence_q_table[s].values() or [0]))
-                    except ValueError:  # Handle empty values error
-                        best_seq = similar_sequences[0] if similar_sequences else None
-
-                    if best_seq and self.sequence_q_table[best_seq]:
-                        max_q_value = max(self.sequence_q_table[best_seq].values())
-                        best_actions = [k for k, v in self.sequence_q_table[best_seq].items()
-                                        if v == max_q_value]
-                        action = np.random.choice(best_actions) if best_actions else np.random.choice(self.actions)
-                    else:
-                        action = np.random.choice(self.actions)
-                else:
-                    # Momentum-based choice: repeat a recent successful action
-                    if self.action_history and np.random.random() < self.action_momentum:
-                        # Find the best action from history based on rewards
-                        if len(self.action_history) > 5:
-                            recent_pairs = list(zip(self.action_history[-5:], self.reward_history[-5:]))
-                            # Fix: Handle potential empty values
-                            if recent_pairs:
-                                best_historical = max(recent_pairs, key=lambda x: x[1])[0]
-                                action = best_historical
-                            else:
-                                action = np.random.choice(self.actions)
-                        else:
-                            action = str(
-                                np.random.choice(self.action_history)) if self.action_history else np.random.choice(
-                                self.actions)
-                    else:
-                        action = np.random.choice(self.actions)
-        else:
-            # For exploitation, use the best action for this sequence state
-            q_values = self.sequence_q_table[sequence_state]
-            if not q_values:
-                # Fall back to the standard Q-table if no sequence data
-                q_values = self.q_table[state]
-
-            if not q_values:
-                action = str(np.random.choice(self.actions))
-            else:
-                # Fix: Handle potential empty values
-                try:
-                    best_action = str(max(q_values.items(), key=lambda x: x[1])[0])
-                    action = best_action
-                except ValueError:  # Handle empty values error
-                    action = str(np.random.choice(self.actions))
-
-        return action
-
-    def update_q_value(self, state, action, reward, next_state):
-        # Call the parent method to update the standard Q-table
-        super().update_q_value(state, action, reward, next_state)
-
-        try:
-            # Ensure action is a string
-            action = str(action)
-
-            # Get sequence states
-            sequence_state = self.get_sequence_state(state)
-            next_sequence_state = self.get_sequence_state(next_state)
-
-            # Current Q-value for this sequence state and action
-            current_seq_q = float(self.sequence_q_table[sequence_state][action])
-
-            # Get next state values for the sequence
-            next_seq_values = {k: float(v) for k, v in self.sequence_q_table[next_sequence_state].items()}
-            next_seq_max_q = max(next_seq_values.values()) if next_seq_values else 0.0
-
-            # Use a higher learning rate for sequence learning to adapt faster
-            seq_learning_rate = min(0.1, self.learning_rate * 1.5)
-
-            # Apply the Q-learning update formula
-            new_seq_q = float(
-                current_seq_q + seq_learning_rate *
-                (reward + self.discount_factor * next_seq_max_q - current_seq_q))
-
-            with q_table_lock:
-                self.sequence_q_table[sequence_state][action] = new_seq_q
-
-            # Update the histories after Q-value updates
-            self.update_histories(state, action, reward)
-
-        except Exception as e:
-            logging.error(f"Agent {self.agent_id}: Error updating sequence Q-value: {str(e)}")
-            logging.error(f"  - State: {state}")
-            logging.error(f"  - Action: {action}")
-            logging.error(f"  - SequenceState: {sequence_state if 'sequence_state' in locals() else 'Not computed'}")
-            logging.error(
-                f"  - Next SequenceState: {next_sequence_state if 'next_sequence_state' in locals() else 'Not computed'}")
-            # Continue execution despite the error
-            pass
-
-    def load_sequence_q_table(self):
-        """Load the sequence-based Q-table from disk"""
-        try:
-            with q_table_lock:
-                if os.path.exists('sequence_q_table.json'):
-                    with open('sequence_q_table.json', 'r') as f:
-                        saved_q_table = json.load(f)
-
-                        # Load saved values
-                        for state_str, actions in saved_q_table.items():
-                            # Parse the state string back into a tuple
-                            components = state_str.strip('()').split(',')
-                            if len(components) >= 5:  # Make sure we have enough components
-                                state = (
-                                    float(components[0]),
-                                    float(components[1]),
-                                    components[2].strip().strip("'"),
-                                    components[3].strip().lower() == 'true',
-                                    components[4].strip().lower() == 'true'
-                                )
-                                self.sequence_q_table[state] = actions
-                    logging.info(f"Agent {self.agent_id}: Sequence Q-table loaded successfully")
-        except Exception as e:
-            logging.error(f"Agent {self.agent_id}: Error loading sequence Q-table: {e}")
-
-    def save_sequence_q_table(self):
-        """Save the sequence-based Q-table to disk"""
-        try:
-            with q_table_lock:
-                # Convert defaultdict to regular dict and tuple keys to strings
-                q_table_dict = {str(state): actions for state, actions in self.sequence_q_table.items()}
-                with open('sequence_q_table.json', 'w') as f:
-                    json.dump(q_table_dict, f)
-            logging.info(f"Agent {self.agent_id}: Sequence Q-table saved successfully")
-        except Exception as e:
-            logging.error(f"Agent {self.agent_id}: Error saving sequence Q-table: {e}")
-
-    def save_episode(self, episode_data):
-        """Save episode data and both Q-tables"""
-        super().save_episode(episode_data)
-        self.save_sequence_q_table()
-
-
-class EnhancedSequenceRacingAI(SequenceRacingAI):
-    """Combines sequence learning with track mapping"""
-
-    def __init__(self, agent_id=0, sequence_length=20):
-        super().__init__(agent_id, sequence_length)
-        self.track_mapper = TrackMapper(agent_id)
-        self.sequence_start_time = time.time()
-        self.last_checkpoint = 0
-
-        # Add additional memory for successful sequences at specific track segments
-        self.track_sequence_memory = defaultdict(list)  # {checkpoint: [(sequence, reward), ...]}
-        self.load_track_sequences()
-
-    def choose_action(self, state, time_elapsed, trials):
-        # First option: Use track mapping recommendations
-        sequence_time = time.time() - self.sequence_start_time
-        recommended_actions = self.track_mapper.get_recommended_actions(
-            state[1],  # checkpoint
-            state[4],  # speed
-            sequence_time
-        )
-
-        # Second option: Use successful historical sequences for this track segment
-        track_key = (state[1], round(state[4] / 10) * 10)  # Checkpoint and binned speed
-        historical_sequences = self.track_sequence_memory.get(track_key, [])
-
-        # Choose between track mapping, sequence memory, and Q-learning
-        choice = np.random.random()
-
-        if recommended_actions and choice < 0.3:
-            # Use track mapper recommendation
-            return recommended_actions[0]
-        elif historical_sequences and choice < 0.6:
-            # Use historical successful sequence
-            # Sort by reward and get top sequences
-            # Fix: Safely handle sorting by wrapping in try/except
-            try:
-                top_sequences = sorted(historical_sequences, key=lambda x: x[1], reverse=True)[:3]
-                # Choose a sequence proportional to its reward
-                weights = np.array([seq[1] for seq in top_sequences])
-                # Fix: Handle zero sum case
-                if weights.sum() > 0:
-                    weights = weights / weights.sum()  # Normalize
-                    chosen_idx = np.random.choice(len(top_sequences), p=weights)
-
-                    # Get an action from the chosen sequence
-                    chosen_sequence = top_sequences[chosen_idx][0]
-                    if chosen_sequence:
-                        # Choose action based on where we are in the current action history
-                        position = len(self.action_history) % len(chosen_sequence)
-                        return chosen_sequence[position]
-            except (ValueError, IndexError) as e:
-                logging.debug(f"Agent {self.agent_id}: Minor error in historical sequence selection: {e}")
-                # Fall through to next option
-
-        # Otherwise use the sequence-based Q-learning
-        action = super().choose_action(state, time_elapsed, trials)
-
-        # Record the action for track mapping
-        self.track_mapper.add_action(
-            action,
-            state[1],  # checkpoint
-            state[4],  # speed
-            self.current_q
-        )
-
-        # Check if we've reached a new checkpoint
-        if state[1] > self.last_checkpoint:
-            # Save successful sequence for this track segment if reward is good
-            if len(self.action_history) >= 5:  # Only save meaningful sequences
-                avg_reward = sum(self.reward_history) / len(self.reward_history) if self.reward_history else 0
-                if avg_reward > 0:  # Only save positive reward sequences
-                    track_key = (self.last_checkpoint, round(state[4] / 10) * 10)
-                    self.track_sequence_memory[track_key].append(
-                        (self.action_history.copy(), avg_reward)
-                    )
-                    # Keep only the top sequences
-                    if len(self.track_sequence_memory[track_key]) > 10:
-                        # Fix: Safely handle sorting by wrapping in try/except
-                        try:
-                            self.track_sequence_memory[track_key] = sorted(
-                                self.track_sequence_memory[track_key],
-                                key=lambda x: x[1],
-                                reverse=True
-                            )[:10]
-                        except (ValueError, TypeError) as e:
-                            logging.debug(f"Agent {self.agent_id}: Minor error in track sequence sorting: {e}")
-
-            # Reset sequence tracking for new checkpoint
-            self.sequence_start_time = time.time()
-            self.last_checkpoint = state[1]
-
-        return action
-
-    def save_track_sequences(self):
-        """Save successful track sequences to file"""
-        try:
-            # Convert to a serializable format
-            data = {}
-            for track_key, sequences in self.track_sequence_memory.items():
-                data[str(track_key)] = sequences
-
-            with open('track_sequences.json', 'w') as f:
-                json.dump(data, f)
-            logging.info(f"Agent {self.agent_id}: Track sequences saved successfully")
-        except Exception as e:
-            logging.error(f"Agent {self.agent_id}: Error saving track sequences: {e}")
-
-    def load_track_sequences(self):
-        """Load successful track sequences from file"""
-        try:
-            if os.path.exists('track_sequences.json'):
-                with open('track_sequences.json', 'r') as f:
-                    data = json.load(f)
-
-                for key_str, sequences in data.items():
-                    # Parse the key back to a tuple
-                    key_parts = key_str.strip('()').split(',')
-                    track_key = (int(key_parts[0]), float(key_parts[1]))
-                    self.track_sequence_memory[track_key] = sequences
-
-                logging.info(f"Agent {self.agent_id}: Track sequences loaded successfully")
-        except Exception as e:
-            logging.error(f"Agent {self.agent_id}: Error loading track sequences: {e}")
-
-    def save_episode(self, episode_data):
-        """Save all data after an episode"""
-        super().save_episode(episode_data)
-        self.track_mapper.save_track_data()
-        self.save_track_sequences()
-
-        # Reset sequence tracking
-        self.sequence_start_time = time.time()
-        self.last_checkpoint = 0
-
-
 def agent_thread(agent_id, stop_event, sequence_length=20, invisible=True):
     # Use the enhanced sequence-based AI instead of the original
-    ai = EnhancedSequenceRacingAI(agent_id, sequence_length=sequence_length)
+    ai = RacingAI(agent_id, sequence_length=sequence_length)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=invisible)
@@ -1045,4 +948,4 @@ if __name__ == "__main__":
     num_agents = 3
     sequence_length = 20  # Set the sequence length for action memory
     number_agents_decided = num_agents
-    run_multi_agent(num_agents, sequence_length, True)
+    run_multi_agent(num_agents, sequence_length, False)
